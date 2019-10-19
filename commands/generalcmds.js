@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     let botembed = new Discord.RichEmbed()
     .setTitle("**__🖥General Commands🖥__**")
     .setColor("#FF0000")
-    .setDescription("`botinfo` | `serverinfo` | `userinfo` | `help` | `beta` | `cmds` | `beta`")
+    .setDescription("`botinfo` | `serverinfo` | `userinfo` | `help` | `beta` | `cmds` | `beta` | `supportdiscord`")
     .setFooter(message.createdAt)
     .setThumbnail("https://cdn.discordapp.com/attachments/633086365093068823/634936384330924062/nitro_gif.gif")
     .setFooter("Nava Developers")
