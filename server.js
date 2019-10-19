@@ -66,4 +66,4 @@ fs.readdir("./commands/", (err, files) => {
 
 
 
-bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XaSGXg.dS5D6byJRapGSXtp1WLL9x8tyRU');
+bot.login('NjM0OTQzMDE3OTc4OTUzNzg4.Xas68w.i5eUixla6I3KQZ_lJgJY5UYU8_Q');
