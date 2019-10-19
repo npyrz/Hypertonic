@@ -1,5 +1,5 @@
-const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
+const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const prefix = botconfig.prefix;
 const bot = new Discord.Client({disableEveryone: true});
@@ -12,7 +12,7 @@ const client = new Discord.Client();
 
 bot.on("ready", async () => {
    console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-   bot.user.setActivity("Being Worked On!", {type: "PlAYING"});
+   bot.user.setActivity("", {type: "PlAYING"});
  
  });
  

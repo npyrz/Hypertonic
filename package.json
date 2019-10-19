@@ -10,7 +10,10 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "discord.js": "^11.5.1",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "ms": "^2.1.2"
   },
   "engines": {
     "node": "8.x"
