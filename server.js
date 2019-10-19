@@ -46,7 +46,7 @@ fs.readdir("./commands/", (err, files) => {
  });
 
  bot.on("guildMemberAdd", async member => {
-  let welcomechannel = bot.channels.get("635135973159600148")
+  let welcomechannel = bot.channels.get("635158154736566283")
   welcomechannel.send(`Welcome ${member}, thank you for joining **__Nava Support Server__**! If you have any questions/suggestions/feedback/reports this is the right place. Please use the correct channels for those purposes! Once again thanks for joining **__Nava Support Server__**!!!`)
   member.addRole("635136075148296193")
 });
