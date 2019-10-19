@@ -1,22 +1,69 @@
-// server.js
-// where your node app starts
+const botconfig = require("./botconfig.json");
+const Discord = require("discord.js");
+const fs = require("fs");
+const prefix = botconfig.prefix;
+const bot = new Discord.Client({disableEveryone: true});
+bot.commands = new Discord.Collection();
+bot.prefix = prefix;
+bot.config = botconfig;
+const CurrentTimers = new Map();
+const client = new Discord.Client();
 
-// init project
-const express = require("express");
-const app = express();
 
-// we've started you off with Express,
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+bot.on("ready", async () => {
+   console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
+   bot.user.setActivity("Being Worked On!", {type: "PlAYING"});
+ 
+ });
+ 
+ bot.on("message", async message => { 
+   if(message.author.bot) return;
+   if(message.channel.type === "dm") return;
+   if(!message.content.startsWith(prefix)) return;
+   if(!CurrentTimers.get(message.guild.id)){ CurrentTimers.set(message.guild.id, new Map()); };
+ 
+   let messageArray = message.content.split(" ");
+   let cmd = messageArray[0];
+   let args = messageArray.slice(1);
+   let commandfile = bot.commands.get(cmd.slice(prefix.length));
+   if(commandfile) return commandfile.run(bot,message,args,CurrentTimers);
+ 
+ });
 
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
+fs.readdir("./commands/", (err, files) => {
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function(request, response) {
-  response.sendFile(__dirname + "/views/index.html");
+  if(err) console.log(err);
+  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  if(jsfile.length <= 0){
+    console.log("Couldn't find commands.");
+    return;
+  }
+  
+  jsfile.forEach((f, i) =>{
+   let props = require(`./commands/${f}`);
+   console.log(`${f} loaded!`);
+   bot.commands.set(props.help.name, props);
+ });
+
+ bot.on("guildMemberAdd", async member => {
+  let welcomechannel = bot.channels.get("635135973159600148")
+  welcomechannel.send(`Welcome ${member}, thank you for joining **__Nava Support Server__**! If you have any questions/suggestions/feedback/reports this is the right place. Please use the correct channels for those purposes! Once again thanks for joining **__Nava Support Server__**!!!`)
+  member.addRole("635136075148296193")
 });
 
-// listen for requests :)
-const listener = app.listen(process.env.PORT, function() {
-  console.log("Your app is listening on port " + listener.address().port);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XaSGXg.dS5D6byJRapGSXtp1WLL9x8tyRU');
