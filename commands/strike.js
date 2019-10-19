@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
   .setTimestamp()
   .addField("Reason", reason);
 
-  message.channel.send ("The user has been striked!!! Look in the <#633089917706043423> channel for more information!!!")
+  message.channel.send ("The user has been striked!!! Look in the `bot-logs` channel for more information!!!")
   let warnchannel = message.guild.channels.find(channel => channel.name === 'bot-logs');
   if(!warnchannel) return message.reply("Couldn't find the channel!");
 
