@@ -12,7 +12,7 @@ const client = new Discord.Client();
 
 bot.on("ready", async () => {
    console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-   bot.user.setActivity("", {type: "PlAYING"});
+   bot.user.setActivity("Beta V 1.0 | !help | !cmds", {type: "PlAYING"});
  
  });
  
@@ -66,4 +66,4 @@ fs.readdir("./commands/", (err, files) => {
 
 
 
-bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XaSGXg.dS5D6byJRapGSXtp1WLL9x8tyRU');
+bot.login('NjM0OTQzMDE3OTc4OTUzNzg4.XatJ7A.kJANXVwqCu25Ih8lO1ZSzOm_g8c');
