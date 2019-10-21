@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     let botembed = new Discord.RichEmbed()
     .setTitle("**__🔨Moderation Commands🔨__**")
     .setColor("#FF0000")
-    .setDescription("`addrole` | `ban` | `kick` | `mute` | `purge` | `removerole` | `strike` | `unban` | `unmute`")
+    .setDescription("`addrole` | `ban` | `kick` | `mute` | `purge` | `removerole` | `strike` | `unban` | `unmute` | `lockdown`")
     .setFooter(message.createdAt)
     .setThumbnail("https://cdn.discordapp.com/attachments/633086365093068823/634935281597808662/giphy_5.gif")
     .setFooter("Nava Developers")
