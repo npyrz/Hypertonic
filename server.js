@@ -55,6 +55,24 @@ fs.readdir("./commands/", (err, files) => {
 
 
 
+bot.on('message', message => {
+
+   if (!message.guild) return;
+ 
+   if (message.content === '!join') {
+     
+     if (message.member.voiceChannel) {
+       message.member.voiceChannel.join()
+         .then(connection => { 
+           message.reply('I have joined the channel!');
+         })
+         .catch(console.log);
+     } else {
+       message.reply('No can do pal!');
+     }
+   }
+ });
+
 
 
 
