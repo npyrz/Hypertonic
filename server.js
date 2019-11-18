@@ -84,4 +84,4 @@ bot.on('message', message => {
 
 
 
-bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XdMRYg.t278541pY10cOjTciFdyBtF1_Zc');
+bot.login(NjE3Nzg0NzUzNDgyODkxMzE2.XdMRYg.t278541pY10cOjTciFdyBtF1_Zc);
