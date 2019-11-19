@@ -63,4 +63,13 @@ fs.readdir("./commands/", (err, files) => {
 
 
 
+
+
+
+
+
+
+
+
+
 bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XdMRYg.t278541pY10cOjTciFdyBtF1_Zc');
