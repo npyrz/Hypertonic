@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 const botconfig = require("./botconfig.json");
 const fs = require("fs");
-//const prefix = config.prefix;
+const prefix = botconfig.prefix;
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
-//bot.prefix = prefix;
-//bot.config = botconfig;
+bot.prefix = prefix;
+bot.config = botconfig;
 const CurrentTimers = new Map();
 const client = new Discord.Client();
 
@@ -50,18 +50,7 @@ fs.readdir("./commands/", (err, files) => {
   welcomechannel.send(`Welcome ${member}, thank you for joining **__Nava Support Server__**! If you have any questions/suggestions/feedback/reports this is the right place. Please use the correct channels for those purposes! Once again thanks for joining **__Nava Support Server__**!!!`)
   member.addRole("635136075148296193")
 });
+
 });
-const { CommandoClient } = require('discord.js-commando');
-const { Structures } = require('discord.js');
-const path = require('path');
-const { prefix, token } = require('./config.json');
-
-
-
-
-
-
-
-
 
 bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XdMRYg.t278541pY10cOjTciFdyBtF1_Zc');
