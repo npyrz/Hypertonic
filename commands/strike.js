@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Striked By", `<@${message.author.id}> ID: ${message.author.id}`)
   .addField("Striked In", message.channel)
   .addField("Number of Strikes", warns[wUser.id].warns)
-  .setFooter("Nava Developers")
+  .setFooter("Hypertonic Developers")
   .setTimestamp()
   .addField("Reason", reason);
 

@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Server Name:", message.guild.name)
     .addField("Created:", message.guild.createdAt)
     .addField("Members:", message.guild.memberCount)
-    .setFooter("Nava Developers")
+    .setFooter("Hypertonic Developers")
     .setTimestamp();
 
     message.channel.send(serverembed);

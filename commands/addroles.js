@@ -19,7 +19,7 @@ let embed = new Discord.RichEmbed()
 .setColor("#FF0000")
 .addField('User recieving the role:', rMember.user.username)
 .addField('User giving the role:', message.author.username)
-.setFooter("Nava Developers")
+.setFooter("Hypertonic Developers")
 .setTimestamp();
 
 let sChannel = message.guild.channels.find(c => c.name === 'bot-logs')
@@ -30,3 +30,5 @@ sChannel.send(embed)
 module.exports.help = {
   name: "addrole"
 }
+
+

@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
   .setColor("#FF0000")
   .addField("Muted User", tomute)
   .addField("Muted in", message.channel)
-  .setFooter("Nava Developers")
+  .setFooter("Hypertonic Developers")
   .setTimestamp()
   .addField("Length", mutetime)
   .addField("Reason", reason);

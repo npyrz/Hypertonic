@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
   .setDescription(`Unmute`)
   .setColor("#FF0000")
   .addField("Muted User", tomute)
-  .setFooter("Nava Developers")
+  .setFooter("Hypertonic Developers")
   .setTimestamp();
 
 

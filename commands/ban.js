@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Banned User", `${bUser} ID: ${bUser.id}`)
     .addField("Banned By", `<@${message.author.id}> ID: ${message.author.id}`)
     .addField("Banned In", message.channel)
-    .setFooter("Nava Developers")
+    .setFooter("Hypertonic Developers")
     .setTimestamp()
     .addField("Reason", bReason);
 

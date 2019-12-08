@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Kicked User", `${kUser} ID: ${kUser.id}`)
     .addField("Kicked By", `<@${message.author.id}> ID: ${message.author.id}`)
     .addField("Kicked In", message.channel)
-    .setFooter("Nava Developers")
+    .setFooter("Hypertonic Developers")
     .setTimestamp()
     .addField("Reason", kReason);
  

@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     .setDescription("`addrole` | `ban` | `kick` | `mute` | `purge` | `removerole` | `strike` | `unban` | `unmute` | `lockdown`")
     .setFooter(message.createdAt)
     .setThumbnail("https://cdn.discordapp.com/attachments/633086365093068823/634935281597808662/giphy_5.gif")
-    .setFooter("Nava Developers")
+    .setFooter("Hypertonic Developers")
     .setTimestamp();
     message.channel.send(botembed);
 }

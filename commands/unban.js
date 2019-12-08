@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     .setColor("#FF0000")
     .addField("Unbanned User", `${bannedMember} ID: ${bannedMember.id} `)
     .addField("Unbanned By", `<@${message.author.id}> ID: ${message.author.id}`)
-    .setFooter("Nava Developers")
+    .setFooter("Hypertonic Developers")
     .setTimestamp();
 
     let sChannel = message.guild.channels.find(c => c.name === "bot-logs")

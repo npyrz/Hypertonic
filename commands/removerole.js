@@ -19,7 +19,7 @@ let embed = new Discord.RichEmbed()
 .setColor("#FF0000")
 .addField('User who got the role removed:', rMember.user.username)
 .addField('User who removed the role:', message.author.username)
-.setFooter("Nava Developers")
+.setFooter("Hypertonic Developers")
 .setTimestamp();
 
 let sChannel = message.guild.channels.find(c => c.name === 'bot-logs')

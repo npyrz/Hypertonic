@@ -7,8 +7,8 @@ module.exports.run = async (bot, message, args) => {
     .setColor("#FF0000")
     .setDescription("`botinfo` | `serverinfo` | `userinfo` | `help` | `beta` | `cmds` | `supportdiscord`")
     .setFooter(message.createdAt)
-    .setThumbnail("https://cdn.discordapp.com/attachments/633086365093068823/634936384330924062/nitro_gif.gif")
-    .setFooter("Nava Developers")
+    .setThumbnail("https://cdn.discordapp.com/attachments/635162251719868468/653052312167907359/h.jpg")
+    .setFooter("Hypertonic Developers")
     .setTimestamp();
     message.channel.send(botembed);
 }

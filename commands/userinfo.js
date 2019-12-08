@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("**Joined**", `${message.member.joinedAt}`, true)
     .addField("**Status:**", `${message.author.presence.status}`, true)
     .addField("**Account Created:**", `${message.author.createdAt}`, true)
-    .setFooter("Nava Developers")
+    .setFooter("Hypertonic Developers")
     .setTimestamp();
     message.channel.send({embed: uEmbed});
 }
