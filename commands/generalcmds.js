@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     let botembed = new Discord.RichEmbed()
     .setTitle("**__🖥General Commands🖥__**")
     .setColor("#FF0000")
-    .setDescription("`botinfo` | `serverinfo` | `userinfo` | `help` | `beta` | `cmds` | `supportdiscord`")
+    .setDescription("`botinfo` | `serverinfo` | `userinfo` | `help` | `cmds` | `supportdiscord`")
     .setFooter(message.createdAt)
     .setThumbnail("https://cdn.discordapp.com/attachments/635162251719868468/653052312167907359/h.jpg")
     .setFooter("Hypertonic Developers")

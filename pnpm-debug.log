@@ -1,0 +1,60 @@
+---
+  0 debug pnpm:scope: 
+    selected: 1
+    workspacePrefix: null
+  1 info pnpm: 
+    message: "A store server is running. All store manipulations are delegated to it."
+    prefix: "/app"
+  2 debug pnpm:package-json: 
+    initial: 
+      //1: "describes your app and its dependencies"
+      //2: "https://docs.npmjs.com/files/package.json"
+      //3: "updating this file will download and update your packages"
+      name: "hello-express"
+      version: "0.0.1"
+      description: "A simple Node app built on Express, instantly up and running."
+      main: "server.js"
+      scripts: 
+        start: "node server.js"
+      dependencies: 
+        discord.js: "^11.5.1"
+        discord.js-commando: "^0.10.0"
+        express: "^4.16.4"
+        ffmpeg: "0.0.4"
+        fs: "0.0.1-security"
+        i: "^0.3.6"
+        ms: "^2.1.2"
+        node-opus: "^0.3.3"
+        npm: "^6.13.1"
+        simple-youtube-api: "^5.2.1"
+        ytdl-core: "^1.0.1"
+        ytpl: "^0.1.18"
+        ytsearcher: "^1.2.2"
+      engines: 
+        node: "8.x"
+      repository: 
+        url: "https://glitch.com/edit/#!/hello-express"
+      license: "MIT"
+      keywords: 
+        - "node"
+        - "glitch"
+        - "express"
+      gitHead: "40bbb7552579ebeb0dbe498242729d30e9b8e835"
+      readme: "ERROR: No README data found!"
+      _id: "hello-express@0.0.1"
+    prefix: "/app"
+  3 warn pnpm: 
+    message: "Moving discord.js that was installed by a different package manager to \"node_modules/.ignored"
+    prefix: "/app"
+  4 error pnpm: 
+    message: 
+      errno: -39
+      code: "ENOTEMPTY"
+      syscall: "rename"
+      path: "/rbd/pnpm-volume/aa340977-a665-4f64-8292-29ee1aa0857d/node_modules/discord.js"
+      dest: "/rbd/pnpm-volume/aa340977-a665-4f64-8292-29ee1aa0857d/node_modules/.ignored/discord.js"
+    err: 
+      name: "Error"
+      message: "ENOTEMPTY: directory not empty, rename '/rbd/pnpm-volume/aa340977-a665-4f64-8292-29ee1aa0857d/node_modules/discord.js' -> '/rbd/pnpm-volume/aa340977-a665-4f64-8292-29ee1aa0857d/node_modules/.ignored/discord.js'"
+      code: "ENOTEMPTY"
+      stack: "Error: ENOTEMPTY: directory not empty, rename '/rbd/pnpm-volume/aa340977-a665-4f64-8292-29ee1aa0857d/node_modules/discord.js' -> '/rbd/pnpm-volume/aa340977-a665-4f64-8292-29ee1aa0857d/node_modules/.ignored/discord.js'"
