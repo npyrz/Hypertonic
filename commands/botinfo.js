@@ -1,18 +1,19 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    let bicon = bot.user.displayAvatarURL;
-    let botembed = new Discord.RichEmbed()
+  let bicon = bot.user.displayAvatarURL;
+  let botembed = new Discord.MessageEmbed()
     .setDescription("Bot Information")
-    .setColor("#FF0000")
+    .setColor("#0e2b82")
     .setThumbnail(bicon)
     .addField("Bot Name", bot.user.username)
+    .addField("Bot Developer", "HypnoticNoah")
     .addField("Created On", bot.user.createdAt)
-    .setFooter("Hypertonic Developers")
+    .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();
 
-    message.channel.send(botembed);
+  message.channel.send(botembed);
 }
 module.exports.help = {
-  name:"botinfo"
+  name: "botinfo"
 }
