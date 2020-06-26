@@ -10,7 +10,7 @@ bot.prefix = prefix;
 bot.config = botconfig;
 const CurrentTimers = new Map();
 const client = new Discord.Client();
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '💸!donate💸', 'Prefix: !', 'Version 1.2.0'];
+let statuses = ['BETA', 'Version 1.2.0'];
 setInterval(function () {
 
   let status = statuses[Math.floor(Math.random() * statuses.length)];
