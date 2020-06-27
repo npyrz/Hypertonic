@@ -10,7 +10,7 @@ bot.prefix = prefix;
 bot.config = botconfig;
 const CurrentTimers = new Map();
 const client = new Discord.Client();
-let statuses = ['BETA', 'Version 1.2.0'];
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '💸!donate💸', 'Prefix: !', 'Version 1.2.0'];
 setInterval(function () {
 
   let status = statuses[Math.floor(Math.random() * statuses.length)];
@@ -124,5 +124,4 @@ bot.on("message", message => {
   }
 });
 
-
-bot.login('NzEzMTQ1MzcwOTIxNzk1NjY1.Xu-9Ug.U-KJiDL6CmIBLR3x4WVXiQ6iwBU');
+bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XvdYvg._aip84rKDu0kaI54cSermTGazq4');
