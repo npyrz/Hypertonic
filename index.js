@@ -124,4 +124,4 @@ bot.on("message", message => {
   }
 });
 
-bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XvdYvg._aip84rKDu0kaI54cSermTGazq4');
+bot.login('NzEzMTQ1MzcwOTIxNzk1NjY1.Xwd-1A.nxkOGYC0enmuOqYQBra9lbhSipE');
