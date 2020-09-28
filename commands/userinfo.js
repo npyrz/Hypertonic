@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
         .addField("**Last Message:**", `${user.lastMessage}`)
         .addField(
             "**Roles:**",
-            mentions.roles.map(roles => `${roles}`).join(", "),
+            mentions.roles.fetch(roles => `${roles}`).join(", "),
             true
         )
         .addField("**Status:**", user.presence.status, true)
