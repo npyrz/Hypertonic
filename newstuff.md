@@ -1,9 +1,9 @@
 [update] {
-   FUNCMDS
+   
 }
 
  [add] {
-COINFLIP
+
  }
 
  [remove] {
