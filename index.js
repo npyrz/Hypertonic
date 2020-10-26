@@ -130,4 +130,4 @@ bot.on("message", message => {
 
 
 
-bot.login('NjE3Nzg0NzUzNDgyODkxMzE2.XWwK4w.y7Zru9FwO42nOEpDGPuNC8XWqaA');
+bot.login(process.env.token);
