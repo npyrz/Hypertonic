@@ -16,7 +16,7 @@
     "moment": "^2.24.0",
     "ms": "^2.1.2",
     "request": "^2.88.0",
-    "timer-stopwatch-dev": "^1.1.0"
+    "timer-stopwatch-dev": "^1.1.0",
     "dotenv": "^8.2.0",
     "start": "^5.1.0"
   }
