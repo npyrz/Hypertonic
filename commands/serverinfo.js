@@ -2,24 +2,16 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   let serverembed = new Discord.MessageEmbed()
-    .setAuthor("Server Information:")
     .setColor("#0e2b82")
-    .addField("**Server Name:**", message.guild.name)
-    .addField("**Server ID:**", message.guild.id)
-    .addField("**Created:**", message.guild.createdAt)
-    .addField("**Channels:**", message.guild.channels.size, true)
-    .addField(
-      "**Server Owner:**",
-      `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`
-    )
-    .addField(
-      "**Total Members:** | **Humans:** | **Bots:**",
-      `${message.guild.members.size} | ${
-    message.guild.members.filter(member => !member.user.bot).size
-    } | ${message.guild.members.filter(member => member.user.bot).size}`,
-      true
-    )
-    .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
+    .setTitle(`${message.guild.name}\'s Information`)
+    .addField("Guild ID", message.guild.id, false)
+    .addField("Server Owner", `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`, false)
+    .addField("Created", `${require('moment')(message.guild.createdAt).format('ddd, MMMM Do YYYY [at] hh:mm A')} | ${require('moment')(message.guild.createdAt).fromNow()}`, false)
+    .addField("Server Region", message.guild.region, false)
+    .addField("Members", message.guild.memberCount, false)
+    .addField("Channels", message.guild.channels.cache.size, false)
+    .addField("Roles", message.guild.roles.cache.size, false)
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`)
     .setTimestamp();
 
   message.channel.send(serverembed);
