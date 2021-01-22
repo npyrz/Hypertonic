@@ -1,4 +1,4 @@
-
+const Discord = require("discord.js");
 //Count Command Moved out of Index.js
 module.exports.run = async (bot, message, args) => {
     if (message.author.bot) return;
@@ -9,7 +9,6 @@ module.exports.run = async (bot, message, args) => {
     );
 };
 
-
 module.exports.help = {
-  name: 'count'
+name: 'count'
 }
