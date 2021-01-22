@@ -1,4 +1,4 @@
-const botconfig = require("./botconfig.json");
+const botconfig = require("./../botconfig.json");
 const fs = require("fs");
 const CurrentTimers = new Map();
 
