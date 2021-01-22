@@ -10,3 +10,7 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send("Slowmode has been set to " + "`" + duration + "`" + " !");
 
 }
+
+module.exports.help = {
+  name: 'slowmode'
+}

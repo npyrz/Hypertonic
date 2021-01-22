@@ -8,3 +8,8 @@ module.exports.run = async (bot, message, args) => {
       `Hypertonic is on ${bot.guilds.cache.size} servers and serving ${bot.users.cache.size} members!`
     );
 };
+
+
+module.exports.help = {
+  name: 'count'
+}
