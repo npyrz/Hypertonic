@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const prefix = botconfig.prefix;
-const {registerEvents } = require('../../../../../../OSRP-BOT/BOT/handlers/events'); // Register Event Function Import
+const {registerEvents } = require('./handlers/events'); // Register Event Function Import
 const bot = new Discord.Client({
   disableEveryone: true
 });
@@ -43,6 +43,8 @@ fs.readdir("./commands/", (err, files) => {
     bot.commands.set(props.help.name, props);
   });
 });
+
+
 
 
 
