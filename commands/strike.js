@@ -5,14 +5,14 @@ let warns = JSON.parse(fs.readFileSync("./strikes.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
   if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Sorry you don't have permission to strike!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
   if (!wUser) return message.reply("Can't find the user!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   if (wUser.hasPermission("KICK_MEMBERS")) return message.reply("Sorry that user can not be striked!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   let reason = args.join(" ").slice(22);
   if (!warns[wUser.id]) warns[wUser.id] = {

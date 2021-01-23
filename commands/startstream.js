@@ -3,12 +3,12 @@ const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
 
   if (!message.member.hasPermission("SEND_MESSAGES")) return message.reply("Sorry you don't have permission to stream!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   let stream = message.guild.member(message.author || message.guild.members.get(args[0]));
   let reason = args.slice(0).join(" ");
   if (!reason) return message.reply("Please supply a link to your stream!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   message.channel.send(`${stream} is now **__🛑LIVE🛑__**!! Check out their stream @ **__${reason}__**!!!`)
 

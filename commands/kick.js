@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Sorry you don't have permission to kick!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!kUser) return message.channel.send("Can't find the user!").then(m => {
@@ -10,10 +10,10 @@ module.exports.run = async (bot, message, args) => {
   });
   let kReason = args.join(" ").slice(22);
   if (!kReason) return message.channel.send("Please enter the reason for the kick!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   if (kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Sorry that user can not be kicked!").then(m => {
-    m.delete(10000)
+    m.delete({timeout: 1000})
   });
   message.channel.send(`${kUser} has been kicked!`)
 

@@ -2,18 +2,18 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply("Sorry you don't have permission to ban!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!bUser) return message.channel.send("Can't find user!").then(m => {
-    m.delete(10000)
+    m.delete({timeout: 1000})
   });
   let bReason = args.slice(1).join(` `);
   if (!bReason) return message.channel.send("Please given a reason for the user to be banned!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   if (bUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Sorry that user can not be banned!").then(m => {
-    m.delete(10000)
+    m.delete({timeout: 1000})
   });
   bUser.ban(bUser, {
     bReason: bReason

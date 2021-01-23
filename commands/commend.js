@@ -5,11 +5,11 @@ let commends = JSON.parse(fs.readFileSync("./commend.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
   if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Sorry you don't have permission to commend someone!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   let cUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
   if (!cUser) return message.reply("Can't find the user your trying to commend!").then(m => {
-    m.delete(15000)
+    m.delete({timeout: 15000})
   });
   let reason = args.join(" ").slice(22);
   if (!commends[cUser.id]) commends[cUser.id] = {
