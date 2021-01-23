@@ -4,10 +4,10 @@ exports.run = (client, message, args) => {
   let time = args.join(' ');
   let validUnlocks = ['release', 'unlock'];
   if (!time) return message.reply('Please set an amount of time you would like the channel to be locked! `!lockdown [TIME][M-S]`').then(m => {
-    m.delete({timeout: 1000})
+    m.delete({timeout: 10000})
   });
   if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Sorry you don't have permission to lockdown!").then(m => {
-    m.delete({timeout: 1000})
+    m.delete({timeout: 10000})
   });
   if (validUnlocks.includes(time)) {
     message.channel.updateOverwrite(message.guild.id, {

@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     m.delete({timeout: 15000})
   });
   if (kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("Sorry that user can not be kicked!").then(m => {
-    m.delete({timeout: 1000})
+    m.delete({timeout: 10000})
   });
   message.channel.send(`${kUser} has been kicked!`)
 
