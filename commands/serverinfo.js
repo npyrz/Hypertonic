@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
   let serverembed = new Discord.MessageEmbed()
     .setColor("#0e2b82")
-    .setTitle(`${message.guild.name}\'s Information`)
+    .setTitle(`${message.guild.name}\'s information`)
     .addField("Guild ID", message.guild.id, false)
     .addField("Server Owner", `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`, false)
     .addField("Created", `${require('moment')(message.guild.createdAt).format('ddd, MMMM Do YYYY [at] hh:mm A')} | ${require('moment')(message.guild.createdAt).fromNow()}`, false)

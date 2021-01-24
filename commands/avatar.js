@@ -1,10 +1,13 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
+  let uUser = message.mentions.members.first() || message.member;
+
+
   let botembed = new Discord.MessageEmbed()
-    .setAuthor(`${message.author.username}'s Avatar`, message.author.displayAvatarURL())
+    .setAuthor(`${uUser.displayName}'s Avatar`, uUser.user.displayAvatarURL())
     .setColor("#0e2b82")
-    .setImage(message.author.displayAvatarURL())
+    .setImage(uUser.user.displayAvatarURL())
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();
 

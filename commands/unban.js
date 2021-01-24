@@ -9,17 +9,17 @@ module.exports.run = async (bot, message, args) => {
     if (!reason) reason = "No reason given!"
     message.delete()
     try {
-        message.guild.members.unban(bannedMember, {
+        message.guild.members.unban(bannedMember.user, {
             reason: reason
         })
-        message.channel.send(`${bannedMember.tag} has been unbanned!`)
+        message.channel.send(`${bannedMember.user} has been unbanned!`)
     } catch (e) {
         console.log(e.message)
     }
 
     let banEmbed = new Discord.MessageEmbed()
         .setColor("#0e2b82")
-        .addField("Unbanned User:", `${bannedMember} ID: ${bannedMember.id} `)
+        .addField("Unbanned User:", `${bannedMember.user} ID: ${bannedMember.user.id} `)
         .addField("Unbanned By:", `<@${message.author.id}> ID: ${message.author.id}`)
         .addField("Reason:", reason)
         .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")

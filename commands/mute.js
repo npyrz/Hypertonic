@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
     m.delete({timeout: 15000})
   });
   message.channel.send(`${tomute} has been muted!`)
-  let muterole = message.guild.roles.cache.find(role => role.name === `Muted`);
+  let muterole = message.guild.roles.cache.find(role => role.name === `muted`);
   if (!muterole) {
     try {
       muterole = await message.guild.roles.create({
