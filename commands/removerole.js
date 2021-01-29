@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
     });
   } else {
     await rMember.roles.remove(role).catch(e => console.log(e.message))
-    message.channel.send(`The role **__${role.name}__**, has been removed from **__${rMember.nickname}!__**`)
+    message.channel.send(`The role **__${role.name}__**, has been removed from **__${rMember.user.username}!__**`)
   }
   let embed = new Discord.MessageEmbed()
     .setDescription(`RemoveRole`)

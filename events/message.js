@@ -1,7 +1,7 @@
 const botconfig = require("./../botconfig.json");
 const fs = require("fs");
 const CurrentTimers = new Map();
-
+const Discord = require("discord.js");
 
 
 // You can not return in this as it will stop any other processes in the event, just do an if statement 

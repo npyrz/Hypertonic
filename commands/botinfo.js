@@ -6,6 +6,7 @@ module.exports.run = async (bot, message, args) => {
   .setTitle(`Hypertonic Bot Information`)
   .setThumbnail(bot.user.displayAvatarURL())
   .addField('**ID:**', bot.user.id)
+  .setColor("#0e2b82")
   .addField('**Name:**', bot.user.username)
   .addField('**Created On:**', `Sunday, September 1st, 2019`)
   .addField('**Prefix:**', "!")
