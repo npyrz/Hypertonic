@@ -49,4 +49,4 @@ fs.readdir("./commands/", (err, files) => {
 
 
 
-bot.login(process.env.token);
+bot.login('NzEzMTQ1MzcwOTIxNzk1NjY1.Xsb2Yg.WDp1ytN3APndBvGtZjB0WdRoPVU');
