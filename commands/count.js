@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
 
     
     message.reply(
-      `Hypertonic is on ${bot.guilds.cache.size} servers and serving ${bot.users.cache.length} members!`
+      `Hypertonic is on ${bot.guilds.cache.size} servers and serving ${bot.users.cache.count} members!`
     );
 };
 
