@@ -4,7 +4,8 @@ const fs = require("fs");
 const prefix = botconfig.prefix;
 const {registerEvents } = require('./handlers/events'); // Register Event Function Import
 const bot = new Discord.Client({
-  disableEveryone: true
+  disableEveryone: true,
+  fetchAllMembers: true
 });
 registerEvents(bot, '../events'); // Call Imported RegisterEvents Function.
 bot.commands = new Discord.Collection();
