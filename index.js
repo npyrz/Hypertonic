@@ -13,7 +13,7 @@ bot.prefix = prefix;
 bot.config = botconfig;
 const CurrentTimers = new Map();
 const client = new Discord.Client();
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', 'Prefix: !', 'Version 1.2.1'];
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', 'Prefix: !', 'Version 1.2.2'];
 setInterval(function () {
 
   let status = statuses[Math.floor(Math.random() * statuses.length)];
@@ -44,6 +44,7 @@ fs.readdir("./commands/", (err, files) => {
     bot.commands.set(props.help.name, props);
   });
 });
+
 
 
 
