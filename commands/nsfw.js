@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
   let botembed = new Discord.MessageEmbed()
     .setColor("#0e2b82")
     .setTitle("🍆__**NSFW**__🍆")
-    .setImage("https://tenor.com/view/coconut-coconut-malled-coconut-mall-mario-kart-lovro-the-coolest-gif-20290663")
+    .setImage("https://cdn.discordapp.com/attachments/666433515365072926/815816997308071976/tenor.gif")
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();
 
