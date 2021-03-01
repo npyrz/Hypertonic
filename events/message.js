@@ -30,20 +30,4 @@ module.exports = async (bot, message) => {
             }
         }
     }
-
-
-
-    let words = ['covid', 'virus', 'corona'];
-    let foundInText = false;
-    for (var i in words) {
-        if (message.content.toLowerCase().includes(words[i].toLowerCase())) foundInText = true;
-    }
-    if (foundInText) {
-        let botembed = new Discord.MessageEmbed()
-        .setColor("#0e2b82")
-        .setImage("https://cdn.discordapp.com/attachments/708353767233552498/719379861356937236/unknown.png")
-        .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
-        .setTimestamp();
-        message.channel.send(botembed);
-    }
 };
