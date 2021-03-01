@@ -7,7 +7,7 @@ exports.run = async (client, message, args, tools) => {
     .get("https://nekos.life/api/kiss");
     
     const embed = new Discord.MessageEmbed()
-    .setColor("#ff9900")
+    .setColor("#0e2b82")
     .setTitle(`${message.author.username} kissed ${personToKiss}`)
     .setImage(body.url) 
     .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);

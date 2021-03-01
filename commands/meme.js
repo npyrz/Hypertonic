@@ -8,6 +8,7 @@ module.exports.run = async (bot, message, args) => {
     let embed = new Discord.MessageEmbed()
     .setDescription(`__**Here's your meme**__😉`)
     .setImage(`${result.url}`)
+    .setColor("#0e2b82")
     .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
     message.channel.send(embed);
   });
