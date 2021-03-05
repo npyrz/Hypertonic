@@ -15,7 +15,7 @@ exports.run = async(client, message, args, tools) => {
     const hugimg = randomP[random];
     const embed = new Discord.MessageEmbed()
         .setColor("#0e2b82")
-        .setTitle(`${message.author.username} hugged ${message.mentions.users.first().username}`)
+        .setTitle(`${message.author.username} hugged ${message.mentions.users.first().username} :D`)
         .setImage(hugimg)
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
     message.channel.send({

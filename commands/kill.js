@@ -24,4 +24,4 @@ exports.run = async(client, message, args, tools) => {
 };
 exports.help = {
     name: 'kill'
-};
+}

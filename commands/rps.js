@@ -1,3 +1,4 @@
+
 const Discord = require("discord.js");
 const { promptMessage } = require("../reactions.js");
 const chooseArr = ["🗿", "📜", "✂"];
