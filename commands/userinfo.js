@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 let arr = new Array()
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async(bot, message, args) => {
     let mentions = message.mentions.members.first() || message.member;
     mentions.roles.cache.forEach(roles => `${arr.push(roles)}`)
     let user = message.mentions.users.first() || message.author;
@@ -10,10 +10,10 @@ module.exports.run = async (bot, message, args) => {
         .setAuthor(`${user.tag}`, user.displayAvatarURL())
         .setThumbnail(`${user.displayAvatarURL()}`)
         .addField("**ID:**", `${user.id}`)
-        .addField("**Last Message:**", `${user.lastMessage}`)
+        .addField("**Last Message:**", `${user.lastMessage.content}`)
         .addField(
             "**Roles:**",
-           arr.join(' , ')
+            arr.join(' , ')
         )
         .addField("**Status:**", user.presence.status, true)
         .addField("**Joined Server:**", `${mentions.joinedAt}`)
