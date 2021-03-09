@@ -10,7 +10,6 @@ module.exports.run = async(bot, message, args) => {
         .setAuthor(`${user.tag}`, user.displayAvatarURL())
         .setThumbnail(`${user.displayAvatarURL()}`)
         .addField("**ID:**", `${user.id}`)
-        .addField("**Last Message:**", `${user.lastMessage.content}`)
         .addField(
             "**Roles:**",
             arr.join(' , ')
