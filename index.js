@@ -2,18 +2,18 @@ const Discord = require("discord.js");
 const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const prefix = botconfig.prefix;
-const {registerEvents } = require('./handlers/events'); // Register Event Function Import
+const {registerEvents } = require('./handlers/events'); 
 const bot = new Discord.Client({
   disableEveryone: true,
   fetchAllMembers: true
 });
-registerEvents(bot, '../events'); // Call Imported RegisterEvents Function.
+registerEvents(bot, '../events'); 
 bot.commands = new Discord.Collection();
 bot.prefix = prefix;
 bot.config = botconfig;
 const CurrentTimers = new Map();
 const client = new Discord.Client();
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', 'Prefix: !', 'Version 1.2.3'];
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', 'Prefix: !', 'Version 1.3.0'];
 setInterval(function () {
 
   let status = statuses[Math.floor(Math.random() * statuses.length)];
@@ -44,10 +44,6 @@ fs.readdir("./commands/", (err, files) => {
     bot.commands.set(props.help.name, props);
   });
 });
-
-
-
-
 
 
 bot.login();
