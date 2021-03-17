@@ -10,10 +10,9 @@ module.exports.run = async (bot, message, args) => {
   .addField('**Name:**', bot.user.username)
   .addField('**Created On:**', `Sunday, September 1st, 2019`)
   .addField('**Prefix:**', "!")
-  .addField('**Channels Being Watched:**', bot.channels.cache.size)
-  .addField('**Creator:**', 'Hypertonic Developers')
+  .addField('**Total Servers:**', bot.guilds.cache.size)
+  .addField('**Developed By:**', 'Hypertonic Administration')
   .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
-    .setTimestamp();
 
   message.channel.send(botembed);
 }

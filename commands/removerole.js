@@ -1,41 +1,63 @@
-const Discord = require("discord.js");
+const Discord = require("discord.js")
+module.exports.run = async(client, message, args) => {
+    
+    message.delete()
+   
+    if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(new Discord.MessageEmbed()
+        .setDescription(`Sorry! You are missing the permission \`MANAGE_ROLES\`!`)
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }))
 
-module.exports.run = async (bot, message, args) => {
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+    const role = message.mentions.roles.first() || message.guild.roles.cache.find(r => [r.name, r.id].includes(args.slice(1).join(' ')))
 
-  if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("Sorry you don't have permission to use this command!").then(m => {
-    m.delete({timeout: 10000})
-  });
-  let rMember = message.mentions.members.first() || message.guild.members.find(m => m.user.tag === args[0]) || message.guild.members.get(args[0])
-  if (!rMember) return message.channel.send("Please provide an user! `!removerole @[USER] [ROLE]` Also please make sure the role `Hypertonic` is above all the roles!").then(m => {
-    m.delete({timeout: 10000})
-  });
-  let role = message.guild.roles.cache.find(r => r.name == args[1]) || message.guild.roles.find(r => r.id == args[1]) || message.mentions.roles.first()
-  if (!role) return message.channel.send("Please add the role name! `!removerole @[USER] [ROLE]` Also please make sure the role `Hypertonic` is above all the roles!").then(m => {
-    m.delete({timeout: 10000})
-  });
 
-  if (!rMember.roles.cache.get(role.id)) {
-    return message.channel.send(`**__${rMember.nickname}__**, doesn't have that role!`).then(m => {
-      m.delete({timeout: 10000})
-    });
-  } else {
-    await rMember.roles.remove(role).catch(e => console.log(e.message))
-    message.channel.send(`The role **__${role.name}__**, has been removed from **__${rMember.user.username}!__**`)
-  }
-  let embed = new Discord.MessageEmbed()
-    .setDescription(`RemoveRole`)
+    if (!member || !role) return message.channel.send(new Discord.MessageEmbed()
+            .setDescription(`To remove a role from a user please do \`\`!removerole @NAME/ID | @ROLE/NAME/ID\`\``)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .then(m => m.delete({ timeout: 30000 }))
+        
+    if (member.roles.highest.rawPosition >= message.member.roles.highest.rawPosition) return message.channel.send(new Discord.MessageEmbed()
+        .setDescription('That member has higher roles than you, you can\'t add remove a role from them!')
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }))
+
+    
+    if (member.roles.highest.rawPosition >= message.guild.me.roles.highest.rawPosition) { return message.channel.send(new Discord.MessageEmbed()
+        .setDescription('That member has higher roles than me, I can\'t remove a role from them!')
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .setColor("#0e2b82")
+        .then(m => m.delete({ timeout: 30000 }))
+      } else {
+      await member.roles.remove(role.id).catch(e => console.log(e.message))
+      message.channel.send(new Discord.MessageEmbed()
+      .setDescription(`The role **${role}** has been removed from ${member}!!!`)
+      .setColor("#0e2b82")
+      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    }
+
+    let embed = new Discord.MessageEmbed()
+    .setTitle(`RemoveRole`)
     .setColor("#0e2b82")
-    .addField('User who got the role removed:', rMember.user.username)
-    .addField('User who removed the role:', message.author.username)
-    .addField('Role Removed:', role.name)
+    .addField('User who got the role removed::', member.user)
+    .addField('User who removed the role:', message.author)
+    .addField('Removed Role:', role)
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();
 
-  let sChannel = message.guild.channels.cache.find(c => c.name === 'bot-logs')
+  let sChannel = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
+  if (!sChannel) return message.channel.send(new Discord.MessageEmbed()
+  .setDescription("Please create a `bot-logs` channel first!")
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  .then(m => m.delete({ timeout: 30000 }));
   sChannel.send(embed)
 
 }
 
 module.exports.help = {
-  name: "removerole"
+    name: "removerole"
 }

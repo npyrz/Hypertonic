@@ -4,13 +4,22 @@ const ms = require("ms");
 let commends = JSON.parse(fs.readFileSync("./commend.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
-  if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Sorry you don't have permission to commend someone!").then(m => {
-    m.delete({timeout: 15000})
-  });
+
+  message.delete();
+
+  if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(new Discord.MessageEmbed()
+  .setDescription("Sorry, you don't have permission to commend someone!")
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  .then(m => m.delete({ timeout: 30000 }))
+  
   let cUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-  if (!cUser) return message.reply("Can't find the user your trying to commend!").then(m => {
-    m.delete({timeout: 15000})
-  });
+  if (!cUser) return message.channel.send(new Discord.MessageEmbed()
+  .setDescription("Sorry, can't find the user you're trying to commend!")
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  .then(m => m.delete({ timeout: 30000 }))
+  
   let reason = args.join(" ").slice(22);
   if (!commends[cUser.id]) commends[cUser.id] = {
     commends: 0
@@ -19,20 +28,29 @@ module.exports.run = async (bot, message, args) => {
   fs.writeFile("./commend.json", JSON.stringify(commends), (err) => {
     if (err) console.log(err)
   });
+
   let commendEmbed = new Discord.MessageEmbed()
-    .setDescription("Commend")
+    .setTitle("Commend")
     .setColor("#0e2b82")
     .addField("Commended User:", `<@${cUser.id}> ID: ${cUser.id}`)
     .addField("Commended By:", `<@${message.author.id}> ID: ${message.author.id}`)
     .addField("Commended In:", message.channel)
-    .addField("Number of Commends:", commends[cUser.id].commends)
+    .addField("Total Number of Commends:", commends[cUser.id].commends)
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp()
     .addField("Reason:", reason);
 
-  message.channel.send(`${cUser} has been commended for **__${reason}__** !`)
+  message.channel.send(new Discord.MessageEmbed()
+  .setDescription(`${cUser} has been commended for ${reason}!`)
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
-  let commendchannel = message.guild.channels.cache.find(channel => channel.name === "bot-logs")
+  let commendchannel = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
+  if (!commendchannel) return message.channel.send(new Discord.MessageEmbed()
+  .setDescription("Please create a `bot-logs` channel first!")
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  .then(m => m.delete({ timeout: 30000 }));
 
   switch (commends[cUser.id].commends) {
     case 1:

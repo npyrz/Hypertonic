@@ -8,20 +8,28 @@ const randomP = ["https://i.pinimg.com/originals/10/8c/22/108c2257683620292f4687
     "https://i.imgur.com/r9aU2xv.gif",
     "https://media3.giphy.com/media/AABkA1gzwu33a/giphy.gif"
 ];
-exports.run = async(client, message, args, tools) => {
-    if (!message.mentions.users.first()) return message.reply("You need to mention someone to hug them!");
+module.exports.run = async(client, message, args, tools) => {
+
+    message.delete();
+
+    if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
+    .setDescription("Sorry, you need to mention someone to hug them!")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .then(m => m.delete({ timeout: 30000 }))
+    
 
     var random = Math.floor(Math.random() * randomP.length);
     const hugimg = randomP[random];
     const embed = new Discord.MessageEmbed()
         .setColor("#0e2b82")
-        .setTitle(`${message.author.username} hugged ${message.mentions.users.first().username} :D`)
+        .setTitle(`${message.author.username} hugged ${message.mentions.users.first().username}`)
         .setImage(hugimg)
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
     message.channel.send({
         embed
     })
 };
-exports.help = {
+module.exports.help = {
     name: 'hug'
 };

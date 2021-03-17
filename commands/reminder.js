@@ -1,16 +1,29 @@
+const Discord = require("discord.js");
 const ms = require('ms');
 exports.run = (client, message, args) => {
+
+  message.delete();
+
   if (!client.lockit) client.lockit = [];
   let time = args.join(' ');
   let validUnlocks = ['release', 'unlock'];
-  if (!time) return message.reply('Please set an amount of time you would like your reminder to be! `!reminder [TIME][M-S-H]`').then(m => {
-    m.delete(20000)
-  });
+  if (!time) return message.channel.send(new Discord.MessageEmbed()
+  .setDescription('Please set an amount of time you would like your reminder to be! `!reminder [TIME][M-S-H]`')
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  .then(m => m.delete({ timeout: 30000 }))
+  
+
   if (validUnlocks.includes(time)) {
     message.channel.updateOverwrite(message.guild.id, {
       SEND_MESSAGES: true
     }).then(() => {
-      message.channel.sendMessage(`${message.author}**⏰⏰⏰YOUR REMINDER HAS __ENDED__!!!⏰⏰⏰**`);
+      message.channel.sendMessage(new Discord.MessageEmbed()
+      .setDescription(`${message.author} your reminder has ended!`)
+      .setColor("#0e2b82")
+      .setThumbnail("https://cdn.discordapp.com/attachments/708353767233552498/821805236813430784/tenor_6.gif")
+      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+
       clearTimeout(client.lockit[message.channel.id]);
       delete client.lockit[message.channel.id];
     }).catch(error => {
@@ -20,12 +33,21 @@ exports.run = (client, message, args) => {
     message.channel.updateOverwrite(message.guild.id, {
       SEND_MESSAGES: true
     }).then(() => {
-      message.channel.send(`${message.author} **⌚⌚⌚YOU HAVE SET A REMINDER FOR __${ms(ms(time), { long:true })}__!!!⌚⌚⌚**`).then(() => {
+      message.channel.send(new Discord.MessageEmbed()
+      .setDescription(`${message.author} you have set a reminder for ${ms(ms(time), { long:true })}!`)
+      .setColor("#0e2b82")
+      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+      .then(() => {
 
         client.lockit[message.channel.id] = setTimeout(() => {
           message.channel.updateOverwrite(message.guild.id, {
             SEND_MESSAGES: true
-          }).then(message.channel.send(`${message.author}**⏰⏰⏰YOUR REMINDER HAS __ENDED__!!!⏰⏰⏰**`)).catch(console.error);
+          }).then(message.channel.send(new Discord.MessageEmbed()
+          .setDescription(`${message.author} your reminder has ended!`)
+          .setThumbnail("https://cdn.discordapp.com/attachments/708353767233552498/821805236813430784/tenor_6.gif")
+          .setColor("#0e2b82")
+          .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`)))
+          .catch(console.error);
           delete client.lockit[message.channel.id];
         }, ms(time));
 

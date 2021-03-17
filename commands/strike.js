@@ -4,16 +4,28 @@ const ms = require("ms");
 let warns = JSON.parse(fs.readFileSync("./strikes.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
-  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Sorry you don't have permission to strike!").then(m => {
-    m.delete({timeout: 15000})
-  });
+
+  message.delete();
+
+  if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(new Discord.MessageEmbed()
+        .setDescription(`Sorry, you you don't have permission to strike!`)
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }))
+  
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-  if (!wUser) return message.reply("Can't find the user!").then(m => {
-    m.delete({timeout: 15000})
-  });
-  if (wUser.hasPermission("KICK_MEMBERS")) return message.reply("Sorry that user can not be striked!").then(m => {
-    m.delete({timeout: 15000})
-  });
+  if (!wUser) return message.channel.send(new Discord.MessageEmbed()
+  .setDescription(`Sorry, can't find the user your trying to strike!`)
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  .then(m => m.delete({ timeout: 30000 }))
+  
+  if (wUser.hasPermission("MANAGE_ROLES")) return message.channel.send(new Discord.MessageEmbed()
+  .setDescription(`Sorry, that user can not be striked!`)
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  .then(m => m.delete({ timeout: 30000 }))
+  
   let reason = args.join(" ").slice(22);
   if (!warns[wUser.id]) warns[wUser.id] = {
     warns: 0
@@ -23,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
     if (err) console.log(err)
   });
   let warnEmbed = new Discord.MessageEmbed()
-    .setDescription("Strike")
+    .setTitle("Strike")
     .setColor("#0e2b82")
     .addField("Striked User", `<@${wUser.id}> ID: ${wUser.id}`)
     .addField("Striked By", `<@${message.author.id}> ID: ${message.author.id}`)
@@ -33,9 +45,17 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp()
     .addField("Reason", reason);
 
-  message.channel.send(`${wUser} has been striked for then reason**${reason}**!`)
+  message.channel.send(new Discord.MessageEmbed()
+  .setDescription(`${wUser} has been striked for then reason ${reason}!`)
+  .setColor("#0e2b82")
+  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+  
   let warnchannel = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
-  if (!warnchannel) return message.reply("Couldn't find the channel!");
+    if (!warnchannel) return message.channel.send(new Discord.MessageEmbed()
+    .setDescription("Please create a `bot-logs` channel first!")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .then(m => m.delete({ timeout: 30000 }));
 
   switch (warns[wUser.id].warns) {
     case 1:
@@ -53,15 +73,26 @@ module.exports.run = async (bot, message, args) => {
       warnchannel.send(warnEmbed);
       if (warns[wUser.id].warns == 10) {
         let muterole = message.guild.roles.find(`name`, "muted");
-        if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+        if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+        .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }));
+
 
         let mutetime = "3600s";
         await (wUser.addRole(muterole.id));
-        message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+        message.channel.send(new Discord.MessageEmbed()
+        .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
         setTimeout(function () {
           wUser.removeRole(muterole.id)
-          message.reply(`<@${wUser.id}> has been unmuted!`)
+          message.channel.send(new Discord.MessageEmbed()
+          .setDescription(`<@${wUser.id}> has been unmuted!`)
+          .setColor("#0e2b82")
+          .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         }, ms(mutetime))
         break;
       }
@@ -80,15 +111,25 @@ module.exports.run = async (bot, message, args) => {
         warnchannel.send(warnEmbed);
         if (warns[wUser.id].warns == 10) {
           let muterole = message.guild.roles.find(`name`, "muted");
-          if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+          if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+          .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+          .setColor("#0e2b82")
+          .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+          .then(m => m.delete({ timeout: 30000 }));
 
           let mutetime = "3600s";
           await (wUser.addRole(muterole.id));
-          message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+          message.channel.send(new Discord.MessageEmbed()
+        .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
           setTimeout(function () {
             wUser.removeRole(muterole.id)
-            message.reply(`<@${wUser.id}> has been unmuted!`)
+            message.channel.send(new Discord.MessageEmbed()
+            .setDescription(`<@${wUser.id}> has been unmuted!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
           }, ms(mutetime))
           break;
         }
@@ -107,15 +148,25 @@ module.exports.run = async (bot, message, args) => {
           warnchannel.send(warnEmbed);
           if (warns[wUser.id].warns == 10) {
             let muterole = message.guild.roles.find(`name`, "muted");
-            if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+            if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+            .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .then(m => m.delete({ timeout: 30000 }));
 
             let mutetime = "3600s";
             await (wUser.addRole(muterole.id));
-            message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+            message.channel.send(new Discord.MessageEmbed()
+            .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
             setTimeout(function () {
               wUser.removeRole(muterole.id)
-              message.reply(`<@${wUser.id}> has been unmuted!`)
+              message.channel.send(new Discord.MessageEmbed()
+              .setDescription(`<@${wUser.id}> has been unmuted!`)
+              .setColor("#0e2b82")
+              .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
             }, ms(mutetime))
             break;
           }
@@ -134,15 +185,25 @@ module.exports.run = async (bot, message, args) => {
             warnchannel.send(warnEmbed);
             if (warns[wUser.id].warns == 10) {
               let muterole = message.guild.roles.find(`name`, "muted");
-              if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+              if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+              .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+              .setColor("#0e2b82")
+              .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+              .then(m => m.delete({ timeout: 30000 }));
 
               let mutetime = "3600s";
               await (wUser.addRole(muterole.id));
-              message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+              message.channel.send(new Discord.MessageEmbed()
+             .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+             .setColor("#0e2b82")
+             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
               setTimeout(function () {
                 wUser.removeRole(muterole.id)
-                message.reply(`<@${wUser.id}> has been unmuted!`)
+                message.channel.send(new Discord.MessageEmbed()
+                .setDescription(`<@${wUser.id}> has been unmuted!`)
+                .setColor("#0e2b82")
+                .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
               }, ms(mutetime))
               break;
             }
@@ -161,15 +222,25 @@ module.exports.run = async (bot, message, args) => {
               warnchannel.send(warnEmbed);
               if (warns[wUser.id].warns == 10) {
                 let muterole = message.guild.roles.find(`name`, "muted");
-                if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+                if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+                .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+                .setColor("#0e2b82")
+                .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+                .then(m => m.delete({ timeout: 30000 }));
 
                 let mutetime = "3600s";
                 await (wUser.addRole(muterole.id));
-                message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+                message.channel.send(new Discord.MessageEmbed()
+                .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+                .setColor("#0e2b82")
+                .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
                 setTimeout(function () {
                   wUser.removeRole(muterole.id)
-                  message.reply(`<@${wUser.id}> has been unmuted!`)
+                  message.channel.send(new Discord.MessageEmbed()
+                  .setDescription(`<@${wUser.id}> has been unmuted!`)
+                  .setColor("#0e2b82")
+                  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                 }, ms(mutetime))
                 break;
               }
@@ -188,15 +259,25 @@ module.exports.run = async (bot, message, args) => {
                 warnchannel.send(warnEmbed);
                 if (warns[wUser.id].warns == 10) {
                   let muterole = message.guild.roles.find(`name`, "muted");
-                  if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+                  if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+                  .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+                  .setColor("#0e2b82")
+                  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+                  .then(m => m.delete({ timeout: 30000 }));
 
                   let mutetime = "3600s";
                   await (wUser.addRole(muterole.id));
-                  message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+                  message.channel.send(new Discord.MessageEmbed()
+                  .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+                  .setColor("#0e2b82")
+                  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
                   setTimeout(function () {
                     wUser.removeRole(muterole.id)
-                    message.reply(`<@${wUser.id}> has been unmuted!`)
+                    message.channel.send(new Discord.MessageEmbed()
+                    .setDescription(`<@${wUser.id}> has been unmuted!`)
+                    .setColor("#0e2b82")
+                    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                   }, ms(mutetime))
                   break;
                 }
@@ -215,15 +296,25 @@ module.exports.run = async (bot, message, args) => {
                   warnchannel.send(warnEmbed);
                   if (warns[wUser.id].warns == 10) {
                     let muterole = message.guild.roles.find(`name`, "muted");
-                    if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
-
+                    if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+                    .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+                    .setColor("#0e2b82")
+                    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+                    .then(m => m.delete({ timeout: 30000 }));
+                    
                     let mutetime = "3600s";
                     await (wUser.addRole(muterole.id));
-                    message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+                    message.channel.send(new Discord.MessageEmbed()
+                    .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+                    .setColor("#0e2b82")
+                    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
                     setTimeout(function () {
                       wUser.removeRole(muterole.id)
-                      message.reply(`<@${wUser.id}> has been unmuted!`)
+                      message.channel.send(new Discord.MessageEmbed()
+                      .setDescription(`<@${wUser.id}> has been unmuted!`)
+                      .setColor("#0e2b82")
+                      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                     }, ms(mutetime))
                     break;
                   }
@@ -242,15 +333,25 @@ module.exports.run = async (bot, message, args) => {
                     warnchannel.send(warnEmbed);
                     if (warns[wUser.id].warns == 10) {
                       let muterole = message.guild.roles.find(`name`, "muted");
-                      if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+                      if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+                      .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+                      .setColor("#0e2b82")
+                      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+                      .then(m => m.delete({ timeout: 30000 }));
 
                       let mutetime = "3600s";
                       await (wUser.addRole(muterole.id));
-                      message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+                      message.channel.send(new Discord.MessageEmbed()
+                      .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+                      .setColor("#0e2b82")
+                      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
                       setTimeout(function () {
                         wUser.removeRole(muterole.id)
-                        message.reply(`<@${wUser.id}> has been unmuted!`)
+                        message.channel.send(new Discord.MessageEmbed()
+                        .setDescription(`<@${wUser.id}> has been unmuted!`)
+                        .setColor("#0e2b82")
+                        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                       }, ms(mutetime))
                       break;
                     }
@@ -269,15 +370,25 @@ module.exports.run = async (bot, message, args) => {
                       warnchannel.send(warnEmbed);
                       if (warns[wUser.id].warns == 10) {
                         let muterole = message.guild.roles.find(`name`, "muted");
-                        if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+                        if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+                        .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+                        .setColor("#0e2b82")
+                        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+                        .then(m => m.delete({ timeout: 30000 }));
 
                         let mutetime = "3600s";
                         await (wUser.addRole(muterole.id));
-                        message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+                        message.channel.send(new Discord.MessageEmbed()
+                        .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+                        .setColor("#0e2b82")
+                        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
                         setTimeout(function () {
                           wUser.removeRole(muterole.id)
-                          message.reply(`<@${wUser.id}> has been unmuted!`)
+                          message.channel.send(new Discord.MessageEmbed()
+                          .setDescription(`<@${wUser.id}> has been unmuted!`)
+                          .setColor("#0e2b82")
+                          .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                         }, ms(mutetime))
                         break;
                       }
@@ -296,15 +407,25 @@ module.exports.run = async (bot, message, args) => {
                         warnchannel.send(warnEmbed);
                         if (warns[wUser.id].warns == 10) {
                           let muterole = message.guild.roles.find(`name`, "muted");
-                          if (!muterole) return message.reply("Sorry, please notify server staff to create a role named `muted`!");
+                          if (!muterole) return message.channel.send(new Discord.MessageEmbed()
+                          .setDescription("Sorry, please notify server staff to create a role named `muted`!")
+                          .setColor("#0e2b82")
+                          .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+                          .then(m => m.delete({ timeout: 30000 }));
 
                           let mutetime = "3600s";
                           await (wUser.addRole(muterole.id));
-                          message.channel.send(`<@${wUser.id}> has been muted for 1 hour!`);
+                          message.channel.send(new Discord.MessageEmbed()
+                          .setDescription(`<@${wUser.id}> has been muted for 1 hour!`)
+                          .setColor("#0e2b82")
+                          .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
                           setTimeout(function () {
                             wUser.removeRole(muterole.id)
-                            message.reply(`<@${wUser.id}> has been unmuted!`)
+                            message.channel.send(new Discord.MessageEmbed()
+                            .setDescription(`<@${wUser.id}> has been unmuted!`)
+                            .setColor("#0e2b82")
+                            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                           }, ms(mutetime))
                           break;
                         }

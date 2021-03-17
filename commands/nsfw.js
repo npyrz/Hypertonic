@@ -1,6 +1,9 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
+
+  message.delete();
+
   let botembed = new Discord.MessageEmbed()
     .setColor("#0e2b82")
     .setTitle("🍆__**NSFW**__🍆")
