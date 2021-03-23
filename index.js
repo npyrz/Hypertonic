@@ -48,4 +48,4 @@ fs.readdir("./commands/", (err, files) => {
 
 
 
-bot.login("NzEzMTQ1MzcwOTIxNzk1NjY1.Xsb2Yg.xnn-I9YB_90PCEpL9JH7MWucY1I");
+bot.login();
