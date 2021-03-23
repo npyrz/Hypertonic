@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   let duration = args[0];
   if (!args[0]) return message.channel.send(new Discord.MessageEmbed()
   .setDescription("Please specify the amount of time you want slowmode to be! `!slowmode [TIME]`")

@@ -4,8 +4,6 @@ const { promptMessage } = require("../reactions.js");
 const chooseArr = ["🗿", "📜", "✂"];
 module.exports.run = async (client, message, args, tools) => {
 
-         message.delete();
-
         let embed = new Discord.MessageEmbed()
         .setAuthor(`Rock, Paper, Scissors`)
         .setColor("#0e2b82")

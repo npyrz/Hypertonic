@@ -2,11 +2,8 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
 
-
 let strikes = JSON.parse(fs.readFileSync("./strikes.json", "utf8"));
 module.exports.run = async (bot, message, args) => {
-
-    message.delete();
 
     let strikeuser = message.guild.member(message.mentions.users.first()) || message.guild.members.fetch(args[0])
     message.channel.send(new Discord.MessageEmbed()

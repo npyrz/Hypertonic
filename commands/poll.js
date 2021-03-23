@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   let thingToEcho = args.join(" ");
   let embed = new Discord.MessageEmbed()
     .setAuthor(`Poll Created By: ${message.author.username}`, message.author.displayAvatarURL)

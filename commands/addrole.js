@@ -1,8 +1,6 @@
 const Discord = require("discord.js")
 module.exports.run = async(client, message, args) => {
-    
-    message.delete()
-   
+
     if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(new Discord.MessageEmbed()
         .setDescription(`Sorry, you you don't have permission to addroles!`)
         .setColor("#0e2b82")
@@ -12,7 +10,6 @@ module.exports.run = async(client, message, args) => {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
     const role = message.mentions.roles.first() || message.guild.roles.cache.find(r => [r.name, r.id].includes(args.slice(1).join(' ')))
 
-   
     if (!member || !role) return message.channel.send(new Discord.MessageEmbed()
             .setDescription(`To add a role to a user please do \`\`!addrole @NAME/ID | @ROLE/NAME/ID\`\``)
             .setColor("#0e2b82")

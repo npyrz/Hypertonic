@@ -3,8 +3,6 @@ const superagent = require('superagent');
 
 exports.run = async (client, message, args, tools) => {
 
-    message.delete();
-
     if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
     .setDescription("Sorry, you need to mention someone to cuddle them!")
     .setColor("#0e2b82")

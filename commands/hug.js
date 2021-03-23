@@ -10,8 +10,6 @@ const randomP = ["https://i.pinimg.com/originals/10/8c/22/108c2257683620292f4687
 ];
 module.exports.run = async(client, message, args, tools) => {
 
-    message.delete();
-
     if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
     .setDescription("Sorry, you need to mention someone to hug them!")
     .setColor("#0e2b82")

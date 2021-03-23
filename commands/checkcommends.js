@@ -4,8 +4,6 @@ const fs = require("fs");
 let jsonfile = JSON.parse(fs.readFileSync("./commend.json", "utf8"));
 module.exports.run = async (bot, message, args) => {
 
-    message.delete();
-    
     let commenduser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
     
     message.channel.send(new Discord.MessageEmbed()

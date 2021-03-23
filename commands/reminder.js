@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 const ms = require('ms');
 exports.run = (client, message, args) => {
 
-  message.delete();
-
   if (!client.lockit) client.lockit = [];
   let time = args.join(' ');
   let validUnlocks = ['release', 'unlock'];

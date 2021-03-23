@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-    message.delete();
-
   let uUser = message.mentions.members.first() || message.member;
   let botembed = new Discord.MessageEmbed()
     .setAuthor(`${uUser.displayName}'s Avatar`, uUser.user.displayAvatarURL())

@@ -2,9 +2,7 @@ const Discord = require("discord.js");
 const StopWatch = require("timer-stopwatch-dev");
 const moment = require('moment');
 module.exports.run = async (bot, message, args, CurrentTimers) => {
-
-  message.delete();
-
+  
   let guildTimers = CurrentTimers.get(message.guild.id);
   let guildTimersUser = guildTimers.get(message.author.id);
   if (!guildTimersUser) {

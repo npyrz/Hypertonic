@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 const superagent = require('superagent');
 exports.run = async(client, message, args, tools) => {
 
-    message.delete();
-
     const { body } = await superagent
         .get("https://official-joke-api.appspot.com/jokes/random");
     const embed = new Discord.MessageEmbed()

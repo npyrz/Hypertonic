@@ -1,8 +1,6 @@
 const Discord = require("discord.js")
 module.exports.run = async(client, message, args) => {
-    
-    message.delete()
-   
+
     if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(new Discord.MessageEmbed()
         .setDescription(`Sorry! You are missing the permission \`MANAGE_ROLES\`!`)
         .setColor("#0e2b82")

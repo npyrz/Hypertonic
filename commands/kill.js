@@ -9,8 +9,6 @@ const randomP = ["https://media2.giphy.com/media/PnhOSPReBR4F5NT5so/source.gif",
 const word = ["shoots", "murders", "ends", "demolishes", "stabs", "stabs"]
 module.exports.run = async(client, message, args, tools) => {
 
-    message.delete();
-
     if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
     .setDescription("Sorry, you need to mention someone to kill them!")
     .setColor("#0e2b82")

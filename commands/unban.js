@@ -2,8 +2,6 @@ const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
 
-    message.delete();
-
     if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send(new Discord.MessageEmbed()
     .setDescription(`Sorry, you dont have permission to unban!`)
     .setColor("#0e2b82")

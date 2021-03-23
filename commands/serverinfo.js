@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   let serverembed = new Discord.MessageEmbed()
     .setColor("#0e2b82")
     .setTitle(`${message.guild.name}\'s Information`)

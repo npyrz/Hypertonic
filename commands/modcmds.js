@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   let bicon = bot.user.displayAvatarURL;
   let botembed = new Discord.MessageEmbed()
     .setTitle("**__🔨Moderation Commands🔨__**")

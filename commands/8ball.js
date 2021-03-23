@@ -9,7 +9,6 @@ var eightball = [
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  message.delete({ timeout: 45000 });
   
   if (message.author.bot) return;
   if (args[1] != null) {

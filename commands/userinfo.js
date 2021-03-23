@@ -3,8 +3,6 @@ let arr = new Array()
 
 module.exports.run = async (bot, message, args) => {
 
-    message.delete();
-
     let mentions = message.mentions.members.first() || message.member;
     mentions.roles.cache.forEach(roles => `${arr.push(roles)}`)
     let user = message.mentions.users.first() || message.author;

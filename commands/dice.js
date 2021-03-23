@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   var response = [Math.floor(Math.random() * (6 - 1 + 1) + 1)];
   let botembed = new Discord.MessageEmbed()
     .setColor("#0e2b82")

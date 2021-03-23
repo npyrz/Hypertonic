@@ -2,12 +2,12 @@ const Discord = require("discord.js");
 const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const prefix = botconfig.prefix;
-const {registerEvents } = require('./handlers/events'); 
+const {registerEvents } = require('./handlers/events');
 const bot = new Discord.Client({
   disableEveryone: true,
   fetchAllMembers: true
 });
-registerEvents(bot, '../events'); 
+registerEvents(bot, '../events');
 bot.commands = new Discord.Collection();
 bot.prefix = prefix;
 bot.config = botconfig;
@@ -46,4 +46,6 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 
-bot.login();
+
+
+bot.login("NzEzMTQ1MzcwOTIxNzk1NjY1.Xsb2Yg.xnn-I9YB_90PCEpL9JH7MWucY1I");

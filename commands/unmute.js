@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(new Discord.MessageEmbed()
   .setDescription("Sorry, you don't have permission to unmute!")
   .setColor("#0e2b82")

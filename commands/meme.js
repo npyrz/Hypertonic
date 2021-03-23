@@ -1,10 +1,7 @@
 const Discord = require("discord.js");
 const { meme } = require('memejs');
 
-
 module.exports.run = async (bot, message, args) => {
-
-  message.delete();
 
   if (message.author.bot) return;
   meme(function(err, result) {

@@ -5,8 +5,6 @@ let warns = JSON.parse(fs.readFileSync("./strikes.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(new Discord.MessageEmbed()
         .setDescription(`Sorry, you you don't have permission to strike!`)
         .setColor("#0e2b82")

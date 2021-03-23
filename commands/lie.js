@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 const word = ["is **lying!**", "has **lied!**", "is telling the **truth!**", "said the **truth!**"]
 module.exports.run = async(client, message, args, tools) => {
 
-    message.delete();
-
     let thingtotest = args.join(" ");
     if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
     .setDescription("Sorry, you need to mention someone to lie detect them!")

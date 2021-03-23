@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 
-    message.delete();
-
     if (!message.member.hasPermission('MANAGE_EMOJIS')) return message.channel.send(new Discord.MessageEmbed()
         .setColor("#0e2b82")
         .setDescription(`Sorry, you don't have permission to add emojis here!`)

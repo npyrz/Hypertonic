@@ -2,9 +2,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
-
   if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send(new Discord.MessageEmbed()
   .setDescription(`Sorry, you don't have permission to kick!`)
   .setColor("#0e2b82")

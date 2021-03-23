@@ -5,8 +5,6 @@ let commends = JSON.parse(fs.readFileSync("./commend.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
 
-  message.delete();
-
   if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(new Discord.MessageEmbed()
   .setDescription("Sorry, you don't have permission to commend someone!")
   .setColor("#0e2b82")
