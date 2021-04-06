@@ -3,7 +3,7 @@ const Enmap = require("enmap");
 const fs = require("fs");
 const client = new Discord.Client();
 const config = require("./botconfig.json");
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', 'Prefix: !', 'Partners: discord.gg/dQWyBmeRgr', 'Version 1.3.0'];
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', 'Prefix: !', 'Partners: discord.gg/dQWyBmeRgr', '🔑!setprefix🔑'];
 setInterval(function() {
     let status = statuses[Math.floor(Math.random() * statuses.length)];
     client.user.setPresence({
