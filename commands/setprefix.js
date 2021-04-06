@@ -55,7 +55,7 @@ exports.run = async(client, message, args, tools) => {
 let embed = new Discord.MessageEmbed()
     .setTitle(`Set Prefix`)
     .setColor("#0e2b82")
-    .addField('User Setting the Prefix:', member.user)
+    .addField('User Setting the Prefix:', `<@${message.author.id}>`)
     .addField(`Prefix:`, `${args[0]}`)
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();
