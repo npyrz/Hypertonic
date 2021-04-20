@@ -1,31 +1,21 @@
-const botconfig = require("./../botconfig.json");
-const fs = require("fs");
-const CurrentTimers = new Map();
-const Discord = require("discord.js");
+const prefix = require('discord-prefix');
+module.exports = (client, message) => {
+    let defaultPrefix = '!';
 
-module.exports = async (bot, message) => {
-    if(!message.channel.type === "dm") return;
+    let GuildPrefix2 = prefix.getPrefix(message.guild.id)
+    if (GuildPrefix2 == null) GuildPrefix2 = default_prefix;
+    if (!message.content.startsWith(GuildPrefix2)) return;
+    if (message.author.bot) return;
+    if (!message.guild) return;
+    if (!message.content.startsWith(GuildPrefix2)) return;
 
-    var prefix;
-    if(!message.author.bot) {
-        if(message.channel.type === "text") {
-            try{
-                prefix = botconfig.prefix;
-                let messageArray = message.content.split(" ");
-                let cmd = messageArray[0];
-                let args = messageArray.slice(1);
+    let guildPrefix = prefix.getPrefix(message.guild.id);
+    if (!guildPrefix) guildPrefix = defaultPrefix;
 
-                if (!CurrentTimers.get(message.guild.id)) {
-                    CurrentTimers.set(message.guild.id, new Map());
-                }
+    let args = message.content.slice(guildPrefix.length).split(' ');
+    let command = args.shift().toLowerCase();
+    let cmd = client.commands.get(command);
+    if (!cmd) return;
 
-                if(message.content.startsWith(prefix)) {
-                    let commandfile = bot.commands.get(cmd.slice(prefix.length));
-                    if (commandfile) return commandfile.run(bot, message, args, CurrentTimers);
-                }
-            } catch(err) {
-                console.log((err), `No prefix configuration setup for ${message.guild.name}`);
-            }
-        }
-    }
+    cmd.run(client, message, args);
 };
