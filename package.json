@@ -10,9 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "ascii-table": "0.0.9",
+    "better-sqlite3": "^7.1.5",
     "common-tags": "^1.8.0",
+    "discord-prefix": "^2.0.0",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
+    "enmap": "^5.8.4",
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "memejs": "^1.2.3",

@@ -1,51 +1,59 @@
 const Discord = require("discord.js");
-const botconfig = require("./botconfig.json");
+const Enmap = require("enmap");
 const fs = require("fs");
-const prefix = botconfig.prefix;
-const { registerEvents } = require('./handlers/events');
+const client = new Discord.Client();
+const config = require("./config.json");
+const prefix = require("discord-prefix");
 const bot = new Discord.Client({
     disableEveryone: true,
     fetchAllMembers: true
 });
+const { registerEvents } = require('./handlers/events');
 registerEvents(bot, '../events');
-bot.commands = new Discord.Collection();
-bot.prefix = prefix;
-bot.config = botconfig;
-const CurrentTimers = new Map();
-const client = new Discord.Client();
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', 'Prefix: !', 'Partners: discord.gg/dQWyBmeRgr', 'Version 1.3.0'];
+client.config = config;
+
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', 'Default Prefix: !', 'Version 1.3.1', 'Partners: discord.gg/dQWyBmeRgr'];
 setInterval(function() {
-
     let status = statuses[Math.floor(Math.random() * statuses.length)];
-
-    bot.user.setPresence({
-
+    client.user.setPresence({
         activity: {
             name: status
         },
-
         status: 'online'
     });
 }, 5000)
 
-
-fs.readdir("./commands/", (err, files) => {
-
-    if (err) console.log(err);
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
-    if (jsfile.length <= 0) {
-        console.log("Couldn't find commands.");
-        return;
-    }
-
-    jsfile.forEach((f, i) => {
-        let props = require(`./commands/${f}`);
-        console.log(`${f} loaded!`);
-        bot.commands.set(props.help.name, props);
+fs.readdir("./events/", (err, files) => {
+    if (err) return console.error(err);
+    files.forEach(file => {
+        const event = require(`./events/${file}`);
+        let eventName = file.split(".")[0];
+        client.on(eventName, event.bind(null, client));
+        console.log(`Loading ${eventName} Event...`);
     });
 });
 
+client.commands = new Enmap();
+fs.readdir("./commands/", (err, files) => {
+    if (err) return console.error(err);
+    files.forEach(file => {
+        if (!file.endsWith(".js")) return;
+        let props = require(`./commands/${file}`);
+        let commandName = file.split(".")[0];
+        console.log(`Loaded ${commandName}...`);
+        client.commands.set(commandName, props);
+    });
+});
 
+client.on('message', message => {
+    if (message.content.startsWith("!prefix")) {
+        let guildPrefix = prefix.getPrefix(message.guild.id);
+        const embed = new Discord.MessageEmbed()
+            .setColor("#0e2b82")
+            .setDescription(`The default prefix for Hypertonic is \`\`!\`\` \nCurrent Server Prefix: \`\`${guildPrefix}\`\``)
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
+        return message.channel.send({ embed })
+    }
+})
 
-
-bot.login();
+client.login(config.token);
