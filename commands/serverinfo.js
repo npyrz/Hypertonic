@@ -9,7 +9,7 @@ module.exports.run = async(bot, message, args) => {
         .setTitle(`${message.guild.name}\'s Information`)
         .addField("Guild ID:", message.guild.id, false)
         .addField("Server Owner:", `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`, false)
-        .addField(`Server Prefix`, `${guildPrefix}`)
+        .addField(`Server Prefix:`, `${guildPrefix}`)
         .addField("Created:", `${require('moment')(message.guild.createdAt).format('ddd, MMMM Do YYYY [at] hh:mm A')} | ${require('moment')(message.guild.createdAt).fromNow()}`, false)
         .addField("Server Region:", message.guild.region, false)
         .addField("Members:", message.guild.memberCount, false)
