@@ -46,8 +46,12 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on('message', message => {
+    let defaultPrefix = '!';
     if (message.content.startsWith("!prefix")) {
         let guildPrefix = prefix.getPrefix(message.guild.id);
+        if (guildPrefix == null) {
+            guildPrefix = defaultPrefix;
+        }
         const embed = new Discord.MessageEmbed()
             .setColor("#0e2b82")
             .setDescription(`The default prefix for Hypertonic is \`\`!\`\` \nCurrent Server Prefix: \`\`${guildPrefix}\`\``)
