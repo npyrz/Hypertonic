@@ -52,8 +52,8 @@ module.exports.run = async(client, message, args) => {
   .setColor("#0e2b82")
   .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
-  let CommendEmbed = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
-  if (!CommendEmbed) return message.channel.send(new Discord.MessageEmbed()
+  let CommendEmbed1 = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
+  if (!CommendEmbed1) return message.channel.send(new Discord.MessageEmbed()
   .setDescription("Please create a `bot-logs` channel first!")
   .setColor("#0e2b82")
   .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
@@ -66,14 +66,14 @@ module.exports.run = async(client, message, args) => {
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     
-        await message.channel.send(CommendEmbed)
+        await message.channel.send(CommendEmbed1)
     } else if (commends !== null) {
         db.add(`commends_${message.guild.id}_${user.id}`, 1)
         user.send(new Discord.MessageEmbed()
         .setDescription(`You have been commended in **${message.guild.name}** for ${reason}`)
         .setColor("#0e2b82")
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-        await message.channel.send(CommendEmbed)
+        await message.channel.send(CommendEmbed1)
     }
 }
 module.exports.help = {
