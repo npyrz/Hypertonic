@@ -1,9 +1,12 @@
+//All libraries needed
 const Discord = require("discord.js");
 const Enmap = require("enmap");
 const fs = require("fs");
 const client = new Discord.Client();
 const config = require("./config.json");
 const prefix = require("discord-prefix");
+
+
 const bot = new Discord.Client({
     disableEveryone: true,
     fetchAllMembers: true
@@ -12,6 +15,8 @@ const { registerEvents } = require('./handlers/events');
 registerEvents(bot, '../events');
 client.config = config;
 
+
+//Bot Status
 let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', 'Default Prefix: !', 'Version 1.3.1', 'Partners: discord.gg/dQWyBmeRgr'];
 setInterval(function() {
     let status = statuses[Math.floor(Math.random() * statuses.length)];
@@ -23,6 +28,8 @@ setInterval(function() {
     });
 }, 5000)
 
+
+//Read all Events
 fs.readdir("./events/", (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
@@ -33,6 +40,8 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
+
+//Read All Commands
 client.commands = new Enmap();
 fs.readdir("./commands/", (err, files) => {
     if (err) return console.error(err);
@@ -45,12 +54,14 @@ fs.readdir("./commands/", (err, files) => {
     });
 });
 
+
+//Prefix Command (Fetches Server Prefix)
 client.on('message', message => {
-    let defaultPrefix = '!';
+    let defaultPrefix = '!'; //Define Prefix
     if (message.content.startsWith("!prefix")) {
-        let guildPrefix = prefix.getPrefix(message.guild.id);
+        let guildPrefix = prefix.getPrefix(message.guild.id); //Gets Prefix in DB
         if (guildPrefix == null) {
-            guildPrefix = defaultPrefix;
+            guildPrefix = defaultPrefix; //If the Prefix is NULL (No custom prefix set), sets to !
         }
         const embed = new Discord.MessageEmbed()
             .setColor("#0e2b82")
@@ -60,4 +71,6 @@ client.on('message', message => {
     }
 })
 
+
+//Login
 client.login(config.token);
