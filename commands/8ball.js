@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
 
   } else {
         message.channel.send(new Discord.MessageEmbed()
-        .setDescription("Give me a question, I'll give you an answer!😉 `!8ball [QUESTION]`")
+        .setDescription("Give me a question, I'll give you an answer!😉 `[prefix]8ball [QUESTION]`")
         .setColor("#0e2b82")
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }));

@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
         let muteembed = new Discord.MessageEmbed()
         .setTitle(`Purge`)
         .setColor("#0e2b82")
-        .addField("Purged By:", `<@${message.author.id}>`)
+        .addField("Purged By:", `<@${message.author.id}> ID: ${message.author.id}`)
         .addField("Purged In:", message.channel)
         .addField("Amount of messages purged:", `${args[0]}`)
         .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")

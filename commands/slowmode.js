@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
 
   let duration = args[0];
   if (!args[0]) return message.channel.send(new Discord.MessageEmbed()
-  .setDescription("Please specify the amount of time you want slowmode to be! `!slowmode [TIME]`")
+  .setDescription("Please specify the amount of time you want slowmode to be! `[prefix]slowmode [TIME]`")
   .setColor("#0e2b82")
   .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
   .then(m => m.delete({ timeout: 30000 }))
@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
   let muteembed = new Discord.MessageEmbed()
         .setTitle(`Slowmode`)
         .setColor("#0e2b82")
-        .addField("Slowmode By:", `<@${message.author.id}>`)
+        .addField("Slowmode By:", `<@${message.author.id}> ID: ${message.author.id}`)
         .addField("Slowmode In:", message.channel)
         .addField("Slowmode Amount:", duration)
         .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")

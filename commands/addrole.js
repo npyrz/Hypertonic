@@ -11,7 +11,7 @@ module.exports.run = async(client, message, args) => {
     const role = message.mentions.roles.first() || message.guild.roles.cache.find(r => [r.name, r.id].includes(args.slice(1).join(' ')))
 
     if (!member || !role) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`To add a role to a user please do \`\`!addrole @NAME/ID | @ROLE/NAME/ID\`\``)
+            .setDescription(`To add a role to a user please do \`\`[prefix]addrole @NAME/ID | @ROLE/NAME/ID\`\``)
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
             .then(m => m.delete({ timeout: 30000 }))
@@ -37,7 +37,7 @@ module.exports.run = async(client, message, args) => {
       } else {
       await member.roles.add(role.id).catch(e => console.log(e.message))
       message.channel.send(new Discord.MessageEmbed()
-      .setDescription(`The role **${role}** has been added to ${member}!!!`)
+      .setDescription(`The role **${role}** has been added to ${member}!`)
       .setColor("#0e2b82")
       .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
@@ -45,8 +45,8 @@ module.exports.run = async(client, message, args) => {
     let embed = new Discord.MessageEmbed()
     .setTitle(`AddRole`)
     .setColor("#0e2b82")
-    .addField('User recieving the role:', member.user)
-    .addField('User giving the role:', message.author)
+    .addField('User recieving the role:', `${member.user} ID: ${member.userid}`)
+    .addField('User giving the role:', `<@${message.author.id}> ID: ${message.author.id}`)
     .addField('Role Given:', role)
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();

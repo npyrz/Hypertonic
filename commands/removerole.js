@@ -12,7 +12,7 @@ module.exports.run = async(client, message, args) => {
 
 
     if (!member || !role) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`To remove a role from a user please do \`\`!removerole @NAME/ID | @ROLE/NAME/ID\`\``)
+            .setDescription(`To remove a role from a user please do \`\`[prefix]removerole @NAME/ID | @ROLE/NAME/ID\`\``)
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
             .then(m => m.delete({ timeout: 30000 }))
@@ -40,8 +40,8 @@ module.exports.run = async(client, message, args) => {
     let embed = new Discord.MessageEmbed()
     .setTitle(`RemoveRole`)
     .setColor("#0e2b82")
-    .addField('User who got the role removed::', member.user)
-    .addField('User who removed the role:', message.author)
+    .addField('User who got the role removed:', `${member.user} ID: ${member.user.id}`)
+    .addField('User who removed the role:', `<@${message.author.id}> ID:${message.author.id}`)
     .addField('Removed Role:', role)
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();

@@ -47,35 +47,31 @@ module.exports.run = async(client, message, args) => {
             .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
             .setTimestamp()
 
-  message.channel.send(new Discord.MessageEmbed()
-  .setDescription(`${message.mentions.users.first().username} has been striked for ${reason}!`)
-  .setColor("#0e2b82")
-  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-
-  let CommendEmbed1 = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
-  if (!CommendEmbed1) return message.channel.send(new Discord.MessageEmbed()
-  .setDescription("Please create a `bot-logs` channel first!")
-  .setColor("#0e2b82")
-  .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-  .then(m => m.delete({ timeout: 30000 }));
-
-    if (strikes === null) {
-        db.set(`strikes_${message.guild.id}_${user.id}`, 1)
-            user.send(new Discord.MessageEmbed()
-            .setDescription(`You have been striked in **${message.guild.name}** for ${reason}`)
+             message.channel.send(new Discord.MessageEmbed()
+            .setDescription(`${message.mentions.users.first().username} has been striked for ${reason}!`)
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+
+             let embed = new Discord.MessageEmbed()
+             .setTitle("Strike")
+             .setColor("#0e2b82")
+             .addField("Striked User:", `<@${message.mentions.users.first().id}> ID: ${message.mentions.users.first().id}`)
+             .addField("Striked By:", `<@${message.author.id}> ID: ${message.author.id}`)
+             .addField("Strike Reason:", `${reason}`)
+             .addField("Striked In:", message.channel)
+             .addField("Total Number of Strikes:", `${db.get(`strikes_${message.guild.id}_${message.mentions.users.first().id}`)+1}`)
+             .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
+             .setTimestamp()
     
-        await message.channel.send(CommendEmbed1)
-    } else if (strikes !== null) {
-        db.add(`strikes_${message.guild.id}_${user.id}`, 1)
-        user.send(new Discord.MessageEmbed()
-        .setDescription(`You have been striked in **${message.guild.name}** for ${reason}`)
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-        await message.channel.send(CommendEmbed1)
+      let sChannel = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
+      if (!sChannel) return message.channel.send(new Discord.MessageEmbed()
+      .setDescription("Please create a `bot-logs` channel first!")
+      .setColor("#0e2b82")
+      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+      .then(m => m.delete({ timeout: 30000 }));
+      sChannel.send(embed)
+
     }
-}
 module.exports.help = {
     name: "strike"
 }

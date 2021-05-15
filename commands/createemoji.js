@@ -31,7 +31,7 @@ module.exports.run = async(client, message, args) => {
         let muteembed = new Discord.MessageEmbed()
         .setTitle(`Create Emoji`)
         .setColor("#0e2b82")
-        .addField("Emoji Created By:", `<@${message.author.id}>`)
+        .addField("Emoji Created By:", `<@${message.author.id}> ID: ${message.author.id}`)
         .addField("Emoji Created In:", message.channel)
         .addField("Emojis:", `${created.map(s => s.toString()).join(' ')}`)
         .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")

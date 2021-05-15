@@ -6,7 +6,7 @@ exports.run = (client, message, args) => {
   let time = args.join(' ');
   let validUnlocks = ['release', 'unlock'];
   if (!time) return message.channel.send(new Discord.MessageEmbed()
-  .setDescription('Please set an amount of time you would like your reminder to be! `!reminder [TIME][M-S-H]`')
+  .setDescription('Please set an amount of time you would like your reminder to be! `[prefix]reminder [TIME][M-S-H]`')
   .setColor("#0e2b82")
   .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
   .then(m => m.delete({ timeout: 30000 }))

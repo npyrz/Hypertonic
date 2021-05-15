@@ -65,8 +65,8 @@ module.exports.run = async (bot, message, args) => {
   let muteembed = new Discord.MessageEmbed()
     .setTitle(`Unmute`)
     .setColor("#0e2b82")
-    .addField("Muted User", tomute)
-    .addField("Unmuted By:", `<@${message.author.id}>`)
+    .addField("Muted User", `${tomute} ID: ${tomute.id}`)
+    .addField("Unmuted By:", `<@${message.author.id}> ID: ${message.author.id}`)
     .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
     .setTimestamp();
 

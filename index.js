@@ -1,23 +1,28 @@
-//All libraries needed
 const Discord = require("discord.js");
 const Enmap = require("enmap");
 const fs = require("fs");
 const client = new Discord.Client();
 const config = require("./config.json");
 const prefix = require("discord-prefix");
-
-
 const bot = new Discord.Client({
     disableEveryone: true,
     fetchAllMembers: true
+});
+const { GiveawaysManager } = require('discord-giveaways');
+client.giveawaysManager = new GiveawaysManager(client, {
+    storage: "./giveaways.json",
+    updateCountdownEvery: 5000,
+    default: {
+        botsCanWin: false,
+        embedColor: "#0e2b82",
+        reaction: "🎉"
+    }
 });
 const { registerEvents } = require('./handlers/events');
 registerEvents(bot, '../events');
 client.config = config;
 
-
-//Bot Status
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', 'Default Prefix: !', 'Version 1.3.1', 'Partners: discord.gg/dQWyBmeRgr'];
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', 'Default Prefix: !', 'Version 1.3.2', 'Partners: discord.gg/dQWyBmeRgr'];
 setInterval(function() {
     let status = statuses[Math.floor(Math.random() * statuses.length)];
     client.user.setPresence({
@@ -28,8 +33,6 @@ setInterval(function() {
     });
 }, 5000)
 
-
-//Read all Events
 fs.readdir("./events/", (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
@@ -40,8 +43,6 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-
-//Read All Commands
 client.commands = new Enmap();
 fs.readdir("./commands/", (err, files) => {
     if (err) return console.error(err);
@@ -54,14 +55,12 @@ fs.readdir("./commands/", (err, files) => {
     });
 });
 
-
-//Prefix Command (Fetches Server Prefix)
 client.on('message', message => {
-    let defaultPrefix = '!'; //Define Prefix
+    let defaultPrefix = '!';
     if (message.content.startsWith("!prefix")) {
-        let guildPrefix = prefix.getPrefix(message.guild.id); //Gets Prefix in DB
+        let guildPrefix = prefix.getPrefix(message.guild.id);
         if (guildPrefix == null) {
-            guildPrefix = defaultPrefix; //If the Prefix is NULL (No custom prefix set), sets to !
+            guildPrefix = defaultPrefix;
         }
         const embed = new Discord.MessageEmbed()
             .setColor("#0e2b82")
@@ -71,6 +70,4 @@ client.on('message', message => {
     }
 })
 
-
-//Login
 client.login(config.token);

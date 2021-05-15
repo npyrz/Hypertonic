@@ -26,7 +26,7 @@ module.exports.run = async(bot, message, args) => {
     let Prefixembed = new Discord.MessageEmbed()
         .setColor("#0e2b82")
         .setTitle("Prefix")
-        .addField(`User changing server prefix:`, `<@${message.author.id}>`)
+        .addField(`User changing server prefix:`, `<@${message.author.id}> ID: ${message.author.id}`)
         .addField('Server Prefix:', `${newPrefix}`)
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`)
         .setTimestamp();
