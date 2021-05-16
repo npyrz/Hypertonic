@@ -15,14 +15,14 @@ client.giveawaysManager = new GiveawaysManager(client, {
     default: {
         botsCanWin: false,
         embedColor: "#0e2b82",
-        reaction: "🎉"
+        reaction: "\U0001f389"
     }
 });
 const { registerEvents } = require('./handlers/events');
 registerEvents(bot, '../events');
 client.config = config;
 
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', 'Default Prefix: !', 'Version 1.3.2', 'Partners: discord.gg/dQWyBmeRgr'];
+let statuses = ['\U0001f5ef\ufe0f!help\U0001f5ef\ufe0f', '\U0001f511!cmds\U0001f511', '\U0001f5a5\ufe0fdiscord.gg/8wBgDk3\U0001f5a5\ufe0f', '\U0001f4cc!setprefix\U0001f4cc', 'Default Prefix: !', 'Version 1.3.2', 'Partners: discord.gg/dQWyBmeRgr'];
 setInterval(function() {
     let status = statuses[Math.floor(Math.random() * statuses.length)];
     client.user.setPresence({
@@ -56,16 +56,12 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on('message', message => {
-    let defaultPrefix = '!';
     if (message.content.startsWith("!prefix")) {
         let guildPrefix = prefix.getPrefix(message.guild.id);
-        if (guildPrefix == null) {
-            guildPrefix = defaultPrefix;
-        }
         const embed = new Discord.MessageEmbed()
             .setColor("#0e2b82")
             .setDescription(`The default prefix for Hypertonic is \`\`!\`\` \nCurrent Server Prefix: \`\`${guildPrefix}\`\``)
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
+            .setFooter(`\U0001f511Join https://discord.gg/8wBgDk3 for Support!\U0001f511`);
         return message.channel.send({ embed })
     }
 })
