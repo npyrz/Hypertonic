@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
 const prefix = require("discord-prefix")
+const db = require("quick.db")
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(client, message, args) => {
+    const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
 
     if (!message.member.hasPermission("ADMINISTRATOR"))
         return message.reply("You don't have permission to use this command");
@@ -30,12 +32,7 @@ module.exports.run = async(bot, message, args) => {
         .addField('Server Prefix:', `${newPrefix}`)
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`)
         .setTimestamp();
-    let sChannel = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
-    if (!sChannel) return message.channel.send(new Discord.MessageEmbed()
-        .setDescription("Please create a `bot-logs` channel first!")
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-    sChannel.send(Prefixembed)
+    client.channels.cache.get(LoggingChannel).send(Prefixembed)
 };
 
 module.exports.help = {

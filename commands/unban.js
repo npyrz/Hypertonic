@@ -1,21 +1,23 @@
 const Discord = require("discord.js")
+const db = require("quick.db")
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async(client, message, args) => {
+    const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
 
     if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send(new Discord.MessageEmbed()
-    .setDescription(`Sorry, you dont have permission to unban!`)
-    .setColor("#0e2b82")
-    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-    .then(m => m.delete({ timeout: 30000 }))
+            .setDescription(`Sorry, you dont have permission to unban!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }))
 
-    
+
     let bannedMember = await message.guild.fetchBan(args[0])
     if (!bannedMember) return message.channel.send(new Discord.MessageEmbed()
-    .setDescription(`Please provide a user id to unban someone!`)
-    .setColor("#0e2b82")
-    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-    .then(m => m.delete({ timeout: 30000 }))
-    
+            .setDescription(`Please provide a user id to unban someone!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }))
+
 
     let reason = args.slice(1).join(" ")
     if (!reason) reason = "No reason given"
@@ -25,9 +27,9 @@ module.exports.run = async (bot, message, args) => {
             reason: reason
         })
         message.channel.send(new Discord.MessageEmbed()
-        .setDescription(`${bannedMember.user} has been unbanned!`)
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .setDescription(`${bannedMember.user} has been unbanned!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     } catch (e) {
         console.log(e.message)
     }
@@ -40,14 +42,7 @@ module.exports.run = async (bot, message, args) => {
         .addField("Reason:", reason)
         .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
         .setTimestamp();
-
-        let sChannel = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
-        if (!sChannel) return message.channel.send(new Discord.MessageEmbed()
-        .setDescription("Please create a `bot-logs` channel first!")
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-        .then(m => m.delete({ timeout: 30000 }));
-        sChannel.send(banEmbed)
+    client.channels.cache.get(LoggingChannel).send(banEmbed)
 }
 
 module.exports.help = {

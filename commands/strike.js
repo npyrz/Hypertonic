@@ -1,6 +1,8 @@
 const Discord = require("discord.js")
 const db = require("quick.db")
 module.exports.run = async(client, message, args) => {
+        const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
+
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
             return message.channel.send(new Discord.MessageEmbed()
                     .setDescription("Sorry, you don't have permission to strike someone!")
@@ -62,15 +64,7 @@ module.exports.run = async(client, message, args) => {
              .addField("Total Number of Strikes:", `${db.get(`strikes_${message.guild.id}_${message.mentions.users.first().id}`)+1}`)
              .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
              .setTimestamp()
-    
-      let sChannel = message.guild.channels.cache.find(channel => channel.name === 'bot-logs');
-      if (!sChannel) return message.channel.send(new Discord.MessageEmbed()
-      .setDescription("Please create a `bot-logs` channel first!")
-      .setColor("#0e2b82")
-      .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-      .then(m => m.delete({ timeout: 30000 }));
-      sChannel.send(embed)
-
+             client.channels.cache.get(LoggingChannel).send(embed)
     }
 module.exports.help = {
     name: "strike"
