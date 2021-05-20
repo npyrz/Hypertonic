@@ -15,7 +15,7 @@ client.giveawaysManager = new GiveawaysManager(client, {
     default: {
         botsCanWin: false,
         embedColor: "#0e2b82",
-        reaction: "\U0001f389"
+        reaction: "🎉"
     }
 });
 const { registerEvents } = require('./handlers/events');
