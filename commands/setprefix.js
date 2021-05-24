@@ -4,7 +4,9 @@ const db = require("quick.db")
 
 module.exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
-
+    if (!LoggingChannel) {
+        return message.reply(`Please set a Logging Channel with \`\`setlogs\`\` Command!`)
+    }
     if (!message.member.hasPermission("ADMINISTRATOR"))
         return message.reply("You don't have permission to use this command");
 

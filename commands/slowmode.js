@@ -3,7 +3,9 @@ const db = require("quick.db")
 
 module.exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
-
+    if (!LoggingChannel) {
+        return message.reply(`Please set a Logging Channel with \`\`setlogs\`\` Command!`)
+    }
     let duration = args[0];
     if (!args[0]) return message.channel.send(new Discord.MessageEmbed()
             .setDescription("Please specify the amount of time you want slowmode to be! `[prefix]slowmode [TIME]`")

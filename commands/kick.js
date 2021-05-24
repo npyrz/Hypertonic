@@ -3,7 +3,9 @@ const db = require("quick.db")
 
 module.exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
-
+    if (!LoggingChannel) {
+        return message.reply(`Please set a Logging Channel with \`\`setlogs\`\` Command!`)
+    }
     if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send(new Discord.MessageEmbed()
             .setDescription(`Sorry, you don't have permission to kick!`)
             .setColor("#0e2b82")

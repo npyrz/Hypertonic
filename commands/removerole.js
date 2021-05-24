@@ -3,7 +3,9 @@ const db = require("quick.db")
 
 module.exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
-
+    if (!LoggingChannel) {
+        return message.reply(`Please set a Logging Channel with \`\`setlogs\`\` Command!`)
+    }
     if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(new Discord.MessageEmbed()
             .setDescription(`Sorry! You are missing the permission \`MANAGE_ROLES\`!`)
             .setColor("#0e2b82")
