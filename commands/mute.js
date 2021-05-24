@@ -5,7 +5,10 @@ const db = require("quick.db")
 module.exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
     if (!LoggingChannel) {
-        return message.reply(`Please set a Logging Channel with \`\`setlogs\`\` Command!`)
+        return message.channel.send(new Discord.MessageEmbed()
+        .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(new Discord.MessageEmbed()
             .setDescription("Sorry, you don't have permission to mute!")
