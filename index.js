@@ -61,7 +61,7 @@ client.on('message', message => {
         const embed = new Discord.MessageEmbed()
             .setColor("#0e2b82")
             .setDescription(`The default prefix for Hypertonic is \`\`!\`\` \nCurrent Server Prefix: \`\`${guildPrefix}\`\``)
-            .setFooter(`\U0001f511Join https://discord.gg/8wBgDk3 for Support!\U0001f511`);
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
         return message.channel.send({ embed })
     }
 })
