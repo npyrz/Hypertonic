@@ -1,16 +1,26 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async(client, message, args) => {
+    let target = message.mentions.users.first();
+    if (!target)
+        target = message.author;
+    let avatarURL = target.displayAvatarURL({
+        size: 4096,
+        dynamic: true
+    });
+    const Embed = new Discord.MessageEmbed()
+        .setTitle(`${target.tag}'s Avatar`)
+        .setDescription(`[Avatar URL](${avatarURL})`)
+        .setColor('#0e2b82')
+        .setImage(avatarURL)
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`, `${message.author.displayAvatarURL({
+            size: 4096,
+            dynamic: true
+        })}`);
 
-  let uUser = message.mentions.members.first() || message.member;
-  let botembed = new Discord.MessageEmbed()
-    .setAuthor(`${uUser.displayName}'s Avatar`, uUser.user.displayAvatarURL())
-    .setColor("#0e2b82")
-    .setImage(uUser.user.displayAvatarURL())
-    .setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑")
-
-  message.channel.send(botembed);
+    message.channel.send(Embed);
 }
+
 module.exports.help = {
-  name: "avatar"
+    name: "avatar"
 }
