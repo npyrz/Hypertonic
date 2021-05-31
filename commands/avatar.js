@@ -9,14 +9,11 @@ module.exports.run = async(client, message, args) => {
         dynamic: true
     });
     const Embed = new Discord.MessageEmbed()
-        .setTitle(`${target.tag}'s Avatar`)
+        .setAuthor(`${target.tag}'s Avatar`, target.displayAvatarURL())
         .setDescription(`[Avatar URL](${avatarURL})`)
         .setColor('#0e2b82')
         .setImage(avatarURL)
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`, `${message.author.displayAvatarURL({
-            size: 4096,
-            dynamic: true
-        })}`);
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
 
     message.channel.send(Embed);
 }
