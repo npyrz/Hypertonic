@@ -64,7 +64,12 @@ client.on('message', message => {
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`);
         return message.channel.send({ embed })
     }
+    if (message.content === '!ping') {
+        const embed = new Discord.MessageEmbed()
+            .setColor("#0e2b82")
+            .setDescription(`Latency is ${Date.now() - message.createdTimestamp}ms \nAPI Latency is ${Math.round(client.ws.ping)}ms`)
+        message.channel.send(embed);
+    }
 })
 
 client.login(config.token);
-
