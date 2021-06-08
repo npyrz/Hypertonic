@@ -6,9 +6,9 @@ module.exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
     if (!LoggingChannel) {
         return message.channel.send(new Discord.MessageEmbed()
-        .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send(new Discord.MessageEmbed()
             .setDescription("Sorry, you don't have permission to mute!")
@@ -17,7 +17,7 @@ module.exports.run = async(client, message, args) => {
         .then(m => m.delete({ timeout: 30000 }))
 
 
-    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    let tomute = message.guild.member(message.mentions.members.first() || message.guild.members.get(args[0]));
     if (!tomute) return message.channel.send(new Discord.MessageEmbed()
             .setDescription("Sorry, can't find the user you're trying to mute!")
             .setColor("#0e2b82")
@@ -47,18 +47,18 @@ module.exports.run = async(client, message, args) => {
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
 
-    let muterole = message.guild.roles.cache.find(role => role.name === `muted`);
+    let muterole = message.guild.roles.cache.find(role => role.name === `Muted`);
     if (!muterole) {
         try {
             muterole = await message.guild.roles.create({
                 data: {
-                    name: "muted",
+                    name: "Muted",
                     color: "#000000",
                     permissions: []
                 },
                 reason: `No Prior Mute Role.`
             })
-            message.guild.channels.forEach(async(channel, id) => {
+            message.guild.channels.cache.forEach(async(channel, id) => {
                 await channel.updateOverwrite(muterole, {
                     SEND_MESSAGES: false,
                     ADD_REACTIONS: false
@@ -75,15 +75,6 @@ module.exports.run = async(client, message, args) => {
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
-
-    message.delete().catch(O_o => {});
-    try {
-        await tomute.send(new Discord.MessageEmbed()
-            .setDescription(`You've been muted for ${mutetime} for the reason ${reason}!`)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-    } catch (e) {}
-
     let muteembed = new Discord.MessageEmbed()
         .setTitle(`Mute`)
         .setColor("#0e2b82")
@@ -94,12 +85,16 @@ module.exports.run = async(client, message, args) => {
         .setTimestamp()
         .addField("Length", mutetime)
         .addField("Reason", reason);
+    tomute.roles.add(muterole)
     client.channels.cache.get(LoggingChannel).send(muteembed)
 
-    await (tomute.roles.add(muterole));
-    setTimeout(function() {
-        tomute.roles.remove(muterole);
-    }, ms(mutetime));
+    function callback(tomute) {
+        return function() {
+            tomute.roles.remove(muterole)
+            message.channel.send(`<@${tomute.id}> has been Unmuted after **${mutetime}**`)
+        }
+    }
+    setTimeout(callback(tomute), ms(mutetime));
 }
 module.exports.help = {
     name: "mute"
