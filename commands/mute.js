@@ -91,7 +91,10 @@ module.exports.run = async(client, message, args) => {
     function callback(tomute) {
         return function() {
             tomute.roles.remove(muterole)
-            message.channel.send(`<@${tomute.id}> has been Unmuted after **${mutetime}**`)
+            message.channel.send(new Discord.MessageEmbed()
+            .setDescription(`<@${tomute.id}> has been unmuted!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         }
     }
     setTimeout(callback(tomute), ms(mutetime));
