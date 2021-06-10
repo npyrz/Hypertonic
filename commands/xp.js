@@ -16,18 +16,9 @@ module.exports.run = async(client, message, args, tools) => {
         .setColor("#0e2b82")
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
 
-    if (!Toggle) {
-        const ErrorEmbed = new Discord.MessageEmbed()
-        .setTitle(`Incorrect Usage!`)
-        .setDescription(`Correct Usage: **xp [on/off]**`)
-        .setColor('#0e2b82')
-        .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
-        message.channel.send(ErrorEmbed)
-    }
-
     if (Toggle == 'on') {
         const OnEmbed = new Discord.MessageEmbed()
-            .setDescription(`XP Set **On**`)
+            .setDescription(`Set XP to **True**`)
             .setColor('#0e2b82')
             .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
         message.channel.send(OnEmbed)
@@ -36,11 +27,18 @@ module.exports.run = async(client, message, args, tools) => {
 
     if (Toggle == 'off') {
         const OffEmbed = new Discord.MessageEmbed()
-            .setDescription(`XP Set **Off**`)
+            .setDescription(`Set XP to **False**`)
             .setColor('#0e2b82')
             .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
         message.channel.send(OffEmbed)
         db.set(`xp_toggle_${message.guild.id}`, Toggle)
+    } else {
+        const ErrorEmbed = new Discord.MessageEmbed()
+            .setTitle(`Incorrect Usage!`)
+            .setDescription(`Correct Usage: **xp [on/off]**`)
+            .setColor('#0e2b82')
+            .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
+        message.channel.send(ErrorEmbed)
     }
 
     let embed = new Discord.MessageEmbed()

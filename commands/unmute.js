@@ -17,7 +17,7 @@ module.exports.run = async(client, message, args) => {
         .then(m => m.delete({ timeout: 30000 }))
 
 
-    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
     if (!tomute) return message.channel.send(new Discord.MessageEmbed()
     .setDescription(`Incorrect Usage`)
     .setDescription("Correct Usage: ``unmute [@NAME/ID]``")

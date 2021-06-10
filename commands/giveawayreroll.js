@@ -6,9 +6,9 @@ exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
     if (!LoggingChannel) {
         return message.channel.send(new Discord.MessageEmbed()
-        .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     if (!message.member.hasPermission('MANAGE_MESSAGES')) {
         return message.channel.send(new Discord.MessageEmbed()
@@ -18,7 +18,8 @@ exports.run = async(client, message, args) => {
     }
     if (!args[0]) {
         return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, you need to specify a valid message ID!`)
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``giveawayreroll [GIVEAWAY_MESSAGE_ID]``")
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }

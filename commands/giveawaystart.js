@@ -6,9 +6,9 @@ exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
     if (!LoggingChannel) {
         return message.channel.send(new Discord.MessageEmbed()
-        .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     if (!message.member.hasPermission('MANAGE_MESSAGES')) {
         return message.channel.send(new Discord.MessageEmbed()
@@ -19,28 +19,32 @@ exports.run = async(client, message, args) => {
     let giveawayChannel = message.mentions.channels.first();
     if (!giveawayChannel) {
         return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, you need to mention a valid channel!`)
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``giveawaystart [CHANNEL] [TIME] [WINNERS] [PRIZE]``")
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     let giveawayDuration = args[1];
     if (!giveawayDuration || isNaN(ms(giveawayDuration))) {
         return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, you need to specify a valid duration!`)
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``giveawaystart [CHANNEL] [TIME] [WINNERS] [PRIZE]``")
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     let giveawayNumberWinners = args[2];
     if (isNaN(giveawayNumberWinners) || (parseInt(giveawayNumberWinners) <= 0)) {
         return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, you need to specify a valid number of winners!`)
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``giveawaystart [CHANNEL] [TIME] [WINNERS] [PRIZE]``")
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     let giveawayPrize = args.slice(3).join(' ');
     if (!giveawayPrize) {
         return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, you need to specify a valid prize!`)
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``giveawaystart [CHANNEL] [TIME] [WINNERS] [PRIZE]``")
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }

@@ -11,7 +11,7 @@ module.exports.run = async(client, message, args) => {
     if (isNaN(LoggingChannel)) return message.channel.send(new Discord.MessageEmbed()
     .setDescription(`Incorrect Usage`)
     .setDescription("Correct Usage: ``setlogs [LOGS CHANNEL ID]``")
-    .addField("How To Get Channel ID", "Add DiscordBot to your server! [Click here](https://www.youtube.com/watch?v=NLWtSHWKbAI)")
+    .addField("How To Get Channel ID", "[Click here](https://www.youtube.com/watch?v=NLWtSHWKbAI)")
     .setColor("#0e2b82")
     .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     try {
