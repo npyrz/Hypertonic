@@ -10,7 +10,8 @@ const word = ["shoots", "murders", "ends", "demolishes", "stabs", "stabs"]
 module.exports.run = async(client, message, args, tools) => {
 
     if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
-    .setDescription("Sorry, you need to mention someone to kill them!")
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``kill [@USER]``")
     .setColor("#0e2b82")
     .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     .then(m => m.delete({ timeout: 30000 }))

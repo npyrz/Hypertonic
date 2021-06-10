@@ -19,9 +19,10 @@ module.exports.run = async(client, message, args) => {
 
     let tomute = message.guild.member(message.mentions.members.first() || message.guild.members.get(args[0]));
     if (!tomute) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription("Sorry, can't find the user you're trying to mute!")
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``mute [@NAME/ID] [TIME] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
 
@@ -34,9 +35,10 @@ module.exports.run = async(client, message, args) => {
 
     let reason = args.slice(2).join(" ");
     if (!reason) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription("Please supply a reason for the user to be muted!")
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``mute [@NAME/ID] [TIME] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
 

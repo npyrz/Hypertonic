@@ -11,9 +11,10 @@ module.exports.run = async(client, message, args) => {
     }
     let duration = args[0];
     if (!args[0]) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription("Please specify the amount of time you want slowmode to be! `[prefix]slowmode [TIME]`")
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``slowmode [SLOWMODE #]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(new Discord.MessageEmbed()

@@ -10,23 +10,26 @@ module.exports.run = async(client, message, args) => {
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, you don't have permission to ban!`)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``ban [@NAME/ID] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     let bUser = message.guild.member(message.mentions.users.first());
     if (!bUser) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, we can't find that user!`)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``ban [@NAME/ID] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     let bReason = args.slice(1).join(` `);
     if (!bReason) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Please given a reason for the user to be banned!`)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``ban [@NAME/ID] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     if (bUser.hasPermission("BAN_MEMBERS")) return message.channel.send(new Discord.MessageEmbed()

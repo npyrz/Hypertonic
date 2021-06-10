@@ -16,8 +16,8 @@ module.exports.run = async(client, message, args) => {
     const newPrefix = args[0];
 
     const Errorembed = new Discord.MessageEmbed()
-        .setColor("0e2b82")
-        .setDescription("Usage: \n`setprefix <new prefix>`")
+        .setDescription(`Incorrect Usage`)
+        .setDescription("Correct Usage: ``setprefix [PREFIX]``")
         .setColor("#0e2b82")
         .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`)
     if (!newPrefix)

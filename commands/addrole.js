@@ -18,9 +18,10 @@ module.exports.run = async(client, message, args) => {
     const role = message.mentions.roles.first() || message.guild.roles.cache.find(r => [r.name, r.id].includes(args.slice(1).join(' ')))
 
     if (!member || !role) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`To add a role to a user please do \`\`[prefix]addrole @NAME/ID | @ROLE/NAME/ID\`\``)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``addrole [@NAME/ID] [@ROLE/NAME/ID]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     if (member.roles.highest.rawPosition >= message.member.roles.highest.rawPosition) return message.channel.send(new Discord.MessageEmbed()

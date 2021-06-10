@@ -18,9 +18,10 @@ module.exports.run = async(client, message, args) => {
         const user = message.mentions.members.first()
         if (!user) {
             return message.channel.send(new Discord.MessageEmbed()
-                    .setDescription("Sorry, please mention the user you're trying to strike!")
-                    .setColor("#0e2b82")
-                    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``strike [@NAME/ID] [REASON]``")
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                 .then(m => m.delete({ timeout: 30000 }))
 
         }
@@ -35,11 +36,11 @@ module.exports.run = async(client, message, args) => {
         const reason = args.slice(1).join(" ")
         if (!reason) {
             return message.channel.send(new Discord.MessageEmbed()
-                    .setDescription("Sorry, please add a reason to the strike that you are giving the user!")
+                    .setDescription(`Incorrect Usage`)
+                    .setDescription("Correct Usage: ``strike [@NAME/ID] [REASON]``")
                     .setColor("#0e2b82")
                     .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
                 .then(m => m.delete({ timeout: 30000 }))
-
         }
         let strikes = db.get(`strikes_${message.guild.id}_${user.id}`)
 

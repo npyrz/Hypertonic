@@ -18,9 +18,10 @@ module.exports.run = async(client, message, args) => {
         .then(m => m.delete({ timeout: 30000 }))
 
     if (!args[0]) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription("Please give the amout of messages you want purged!")
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``purge [#]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     message.channel.bulkDelete(args[0]).then(() => {

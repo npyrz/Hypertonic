@@ -18,9 +18,10 @@ module.exports.run = async(client, message, args) => {
 
     let bannedMember = await message.guild.fetchBan(args[0])
     if (!bannedMember) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Please provide a user id to unban someone!`)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``unban [@NAME/ID] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
 

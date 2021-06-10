@@ -16,9 +16,11 @@ module.exports.run = (client, message, args) => {
     let time = args.join(' ');
     let validUnlocks = ['release', 'unlock'];
     if (!time) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription('Please set an amount of time you would like the channel to be locked! `[prefix]lockdown [TIME][M-S]`')
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``lockdown [TIME][M-S]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+.then(m => m.delete({ timeout: 30000 }))
         .then(m => m.delete({ timeout: 30000 }))
 
 

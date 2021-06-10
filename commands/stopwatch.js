@@ -18,7 +18,15 @@ module.exports.run = async (bot, message, args, CurrentTimers) => {
     if (!guildTimersUser.isRunning()) return message.channel.send(new Discord.MessageEmbed().setTitle('⏱️You need to start the Stopwatch first!⏱️').setDescription('Do `' + bot.prefix + 'stopwatch start` to start the Stopwatch!').setColor("#0e2b82"));
     guildTimersUser.stop();
     message.channel.send(new Discord.MessageEmbed().setTitle('⏱️You have stopped the Stopwatch!⏱️').setDescription('Total Time: ' + dhm(guildTimersUser.ms)).setFooter("🔑Join https://discord.gg/8wBgDk3 for Support!🔑").setColor("#0e2b82"));
-  }
+  }else {
+    return message.channel.send(new Discord.MessageEmbed()
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``stopwatch [start/stop]``")
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }))
+}
+
 
   function dhm(ms) {
     days = Math.floor(ms / (24 * 60 * 60 * 1000));

@@ -18,10 +18,10 @@ module.exports.run = async(client, message, args, tools) => {
 
     if (!Toggle) {
         const ErrorEmbed = new Discord.MessageEmbed()
-            .setTitle(`Incorrect Usage!`)
-            .setDescription(`Correct Usage: **xp [on/off]**`)
-            .setColor('#0e2b82')
-            .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
+        .setTitle(`Incorrect Usage!`)
+        .setDescription(`Correct Usage: **xp [on/off]**`)
+        .setColor('#0e2b82')
+        .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
         message.channel.send(ErrorEmbed)
     }
 

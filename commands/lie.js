@@ -4,10 +4,11 @@ module.exports.run = async(client, message, args, tools) => {
 
     let thingtotest = args.join(" ");
     if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
-    .setDescription("Sorry, you need to mention someone to lie detect them!")
-    .setColor("#0e2b82")
-    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
-    .then(m => m.delete({ timeout: 30000 }))
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``lie [@USER] [QUESTION]``")
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+        .then(m => m.delete({ timeout: 30000 }))
     
 
     var random = Math.floor(Math.random() * word.length);

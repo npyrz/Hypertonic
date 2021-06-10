@@ -20,9 +20,10 @@ module.exports.run = async(client, message, args) => {
 
 
     if (!member || !role) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`To remove a role from a user please do \`\`[prefix]removerole @NAME/ID | @ROLE/NAME/ID\`\``)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``removerole [@NAME/ID] [@ROLE/NAME/ID]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     if (member.roles.highest.rawPosition >= message.member.roles.highest.rawPosition) return message.channel.send(new Discord.MessageEmbed()

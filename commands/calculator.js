@@ -10,6 +10,10 @@ module.exports.run = async(client, message, args) => {
             .setColor('#0e2b82')
         message.channel.send(embed)
     } catch (e) {
-        message.reply(`Please supply a valid equation!`)
-    }
+        message.channel.send(new Discord.MessageEmbed()
+                .setDescription(`Incorrect Usage`)
+                .setDescription("Correct Usage: ``calculator [EQUATION]``")
+                .setColor("#0e2b82")
+                .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .then(m => m.delete({ timeout: 30000 }));}
 }

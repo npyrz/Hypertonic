@@ -12,7 +12,8 @@ module.exports.run = async (bot, message, args) => {
   let stream = message.guild.member(message.author || message.guild.members.get(args[0]));
   let reason = args.slice(0).join(" ");
   if (!reason) return message.channel.send(new Discord.MessageEmbed()
-  .setDescription("Please supply a link to your stream!")
+  .setDescription(`Incorrect Usage`)
+  .setDescription("Correct Usage: ``startstream (Stream URL)``")
   .setColor("#0e2b82")
   .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
   .then(m => m.delete({ timeout: 30000 }))

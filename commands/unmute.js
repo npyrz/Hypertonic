@@ -19,9 +19,10 @@ module.exports.run = async(client, message, args) => {
 
     let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if (!tomute) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription("Sorry, can't find the user!")
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``unmute [@NAME/ID]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
 
@@ -32,12 +33,12 @@ module.exports.run = async(client, message, args) => {
         .then(m => m.delete({ timeout: 30000 }))
 
 
-    let muterole = message.guild.roles.cache.find(role => role.name === `muted`);
+    let muterole = message.guild.roles.cache.find(role => role.name === `Muted`);
     if (!muterole) {
         try {
             muterole = await message.guild.roles.create({
                 data: {
-                    name: "muted",
+                    name: "Muted",
                     color: "#000000",
                     permissions: []
                 },
@@ -53,7 +54,7 @@ module.exports.run = async(client, message, args) => {
             console.log(e.stack);
         }
     }
-    if (!tomute.roles.cache.find(role => role.name === `muted`)) return message.channel.send(new Discord.MessageEmbed()
+    if (!tomute.roles.cache.find(role => role.name === `Muted`)) return message.channel.send(new Discord.MessageEmbed()
             .setDescription("Sorry, this user is not muted!")
             .setColor("#0e2b82")
             .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))

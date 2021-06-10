@@ -18,17 +18,19 @@ module.exports.run = async(client, message, args) => {
 
     let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if (!kUser) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Sorry, can't find the user you're trying to kick!`)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``kick [@NAME/ID] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
 
     let kReason = args.join(" ").slice(22);
     if (!kReason) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription(`Please put a reason why you are kicking the user!`)
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``kick [@NAME/ID] [REASON]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
 

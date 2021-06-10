@@ -4,9 +4,10 @@ const superagent = require('superagent');
 module.exports.run = async(client, message, args, tools) => {
 
     if (!message.mentions.users.first()) return message.channel.send(new Discord.MessageEmbed()
-            .setDescription("Sorry, you need to mention someone to kiss them!")
-            .setColor("#0e2b82")
-            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+    .setDescription(`Incorrect Usage`)
+    .setDescription("Correct Usage: ``kiss [@USER]``")
+    .setColor("#0e2b82")
+    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     const { body } = await superagent

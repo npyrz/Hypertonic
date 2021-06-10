@@ -8,9 +8,10 @@ module.exports.run = async(client, message, args) => {
     const user = await Levels.fetch(target.id, message.guild.id, true);
 
     const ErrorEmbed = new Discord.MessageEmbed()
-        .setTitle(`:x: Error! Please mention a valid user!`)
-        .setColor('#0e2b82')
-        .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
+        .setDescription(`Incorrect Usage`)
+        .setDescription("Correct Usage: ``rank (OPTIONAL @)``")
+        .setColor("#0e2b82")
+        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`)
 
     if (!user) return message.channel.send(ErrorEmbed);
 
