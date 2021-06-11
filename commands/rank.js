@@ -7,14 +7,6 @@ module.exports.run = async(client, message, args) => {
     const target = message.mentions.users.first() || message.author;
     const user = await Levels.fetch(target.id, message.guild.id, true);
 
-    const ErrorEmbed = new Discord.MessageEmbed()
-        .setDescription(`Incorrect Usage`)
-        .setDescription("Correct Usage: ``rank (OPTIONAL @)``")
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`)
-
-    if (!user) return message.channel.send(ErrorEmbed);
-
     const rank = new canvacord.Rank()
         .setAvatar(target.displayAvatarURL({ format: 'png', size: 512 }))
         .setCurrentXP(user.xp)
