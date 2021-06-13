@@ -10,7 +10,7 @@ module.exports.run = async(client, message, args) => {
         .setColor('#0e2b82')
     if (!user) return message.channel.send(ErrorEmbed);
     const SuccessEmbed = new Discord.MessageEmbed()
-        .setDescription(`**${target.tag} is Currently Level ${user.level}**`)
+        .setDescription(`**${target.tag} is currently Level ${user.level}**`)
         .setColor('#0e2b82')
         .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
     message.channel.send(SuccessEmbed);

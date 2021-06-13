@@ -87,9 +87,12 @@ client.on("message", async(message) => {
         if (hasLeveledUp) {
             const user = await Levels.fetch(message.author.id, message.guild.id);
             const LevelEmbed = new Discord.MessageEmbed()
-                .setTitle(`${message.author.tag} has just Leveled up to Level ${user.level}`)
+                .setTitle(`${message.author.tag} has just leveled up to Level ${user.level}`)
                 .setColor('#0e2b82')
                 .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
+                .then(message => {
+                    message.delete(10000)
+                  })
             message.channel.send(LevelEmbed);
         }
     } else {
