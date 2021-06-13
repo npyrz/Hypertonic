@@ -4,9 +4,9 @@ module.exports.run = async(client, message, args) => {
     const LoggingChannel = db.get(`loggingchannel_${message.guild.id}`)
     if (!LoggingChannel) {
         return message.channel.send(new Discord.MessageEmbed()
-        .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
-        .setColor("#0e2b82")
-        .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .setDescription(`Please set a logging channel with the \`\`setlogs\`\` command!`)
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
     }
     if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(new Discord.MessageEmbed()
             .setDescription(`Sorry, you you don't have permission to addroles!`)
@@ -18,10 +18,10 @@ module.exports.run = async(client, message, args) => {
     const role = message.mentions.roles.first() || message.guild.roles.cache.find(r => [r.name, r.id].includes(args.slice(1).join(' ')))
 
     if (!member || !role) return message.channel.send(new Discord.MessageEmbed()
-    .setDescription(`Incorrect Usage`)
-    .setDescription("Correct Usage: ``addrole [@NAME/ID] [@ROLE/NAME/ID]``")
-    .setColor("#0e2b82")
-    .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
+            .setDescription(`Incorrect Usage`)
+            .setDescription("Correct Usage: ``addrole [@NAME/ID] [@ROLE/NAME/ID]``")
+            .setColor("#0e2b82")
+            .setFooter(`🔑Join https://discord.gg/8wBgDk3 for Support!🔑`))
         .then(m => m.delete({ timeout: 30000 }))
 
     if (member.roles.highest.rawPosition >= message.member.roles.highest.rawPosition) return message.channel.send(new Discord.MessageEmbed()
