@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 const Enmap = require("enmap");
 const fs = require("fs");
-const client = new Discord.Client();
 const config = require("./config.json");
+const client = new Discord.Client();
 const prefix = require("discord-prefix");
 const bot = new Discord.Client({
     disableEveryone: true,
@@ -90,9 +90,6 @@ client.on("message", async(message) => {
                 .setTitle(`${message.author.tag} has just leveled up to Level ${user.level}`)
                 .setColor('#0e2b82')
                 .setFooter('🔑Join https://discord.gg/8wBgDk3 for Support!🔑')
-                .then(message => {
-                    message.delete(10000)
-                  })
             message.channel.send(LevelEmbed);
         }
     } else {
