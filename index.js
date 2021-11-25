@@ -22,7 +22,7 @@ const { registerEvents } = require('./handlers/events');
 registerEvents(bot, '../events');
 client.config = config;
 
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', `📲!setlogs📲`, 'Default Prefix: !', 'Version 1.4.0', 'Partners: discord.gg/dQWyBmeRgr'];
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', `📲!setlogs📲`, 'Default Prefix: !', 'Version 1.4.0'];
 setInterval(function() {
     let status = statuses[Math.floor(Math.random() * statuses.length)];
     client.user.setPresence({
@@ -70,7 +70,7 @@ client.on('message', message => {
 const db = require('quick.db')
 const Levels = require("discord-xp");
 
-Levels.setURL("mongodb+srv://admin:HypertonicDiscordBot2021@hypertonicbot.5vhin.mongodb.net/hypertonic-xp-system");
+Levels.setURL("");
 
 client.on("message", async(message) => {
     const CurrentXP = db.get(`xp_toggle_${message.guild.id}`)
