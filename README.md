@@ -16,4 +16,5 @@ This was the Hypertonic Discord Bot source code before the Hypertonic v2 release
 
 # Credits
 https://github.com/HypnoticSiege
+
 https://github.com/R3site
