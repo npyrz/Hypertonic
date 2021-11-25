@@ -22,7 +22,7 @@ const { registerEvents } = require('./handlers/events');
 registerEvents(bot, '../events');
 client.config = config;
 
-let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', `📲!setlogs📲`, 'Default Prefix: !', 'Version 1.4.0'];
+let statuses = ['🗯️!help🗯️', '🔑!cmds🔑', '🖥️discord.gg/8wBgDk3🖥️', '📌!setprefix📌', `📲!setlogs📲`, 'Default Prefix: !', 'Version 1.4.1'];
 setInterval(function() {
     let status = statuses[Math.floor(Math.random() * statuses.length)];
     client.user.setPresence({
