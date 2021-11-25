@@ -13,3 +13,7 @@ This was the Hypertonic Discord Bot source code before the Hypertonic v2 release
 - All files included
 - NPM Dependants in `package.json`
 - `config.json`
+
+# Credits
+https://github.com/HypnoticSiege
+https://github.com/R3site
