@@ -9,4 +9,6 @@ This was the Hypertonic Discord Bot source code. Hypertonic is an amazing Discor
   Email: *neoptunium@gmail.com*
 
 # Dependencies 
-
+- [Node JS](https://nodejs.dev/)
+- All files included
+- NPM Dependants in `package.json`
